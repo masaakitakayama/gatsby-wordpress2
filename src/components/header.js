@@ -17,14 +17,14 @@ const Header = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      import('/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js').then((Modal) => {
+      import('bootstrap/dist/js/bootstrap.bundle.min.js').then((Modal) => {
         if (modalRef.current) {
           bootstrapModalRef.current = new Modal.default(modalRef.current);
         }
       });
 
       // ドロップダウンなど、他の Bootstrap 機能も同様に初期化する場合はここに追加
-      import('/node_modules/bootstrap/js/src/dropdown.js');
+      import('bootstrap/js/src/dropdown.js');
     }
 
     return () => {

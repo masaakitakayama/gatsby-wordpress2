@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import '../css/style.css'
 import Layout from "../components/layout";
-import '../my_js/skills'
+import '../my_js/skills';
 import circle from '../static/circle.png';
 import needle from '../static/needle.png';
 
