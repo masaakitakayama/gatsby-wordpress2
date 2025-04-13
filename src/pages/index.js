@@ -2,10 +2,9 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import '../css/style.css'
 import Layout from "../components/layout";
-import '/src/my_js/skills';
 import circle from '../static/circle.png';
 import needle from '../static/needle.png';
-
+import SkillsAnimation from '../my_js/skills'; // ← SkillsAnimation コンポーネントをインポート
 
 const IndexPage = ({ data }) => {
   const { wpgraphql } = data;
@@ -165,6 +164,7 @@ const IndexPage = ({ data }) => {
                   </div>
                 </div>
               </div>
+              <SkillsAnimation /> {/* ← SkillsAnimation コンポーネントをレンダリング */}
           </section>
     </Layout>
   );

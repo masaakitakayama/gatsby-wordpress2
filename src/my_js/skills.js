@@ -17,6 +17,7 @@ const SkillsAnimation = () => {
         '.image-outer-7',
       ];
 
+
       // スクロールイベントハンドラー
       function handleScroll(index) {
         const imageOuter = document.querySelector(selectors[index]);

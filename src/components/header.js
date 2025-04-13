@@ -17,14 +17,11 @@ const Header = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      import('bootstrap/dist/js/bootstrap.bundle.min.js').then((Modal) => {
-        if (modalRef.current) {
-          bootstrapModalRef.current = new Modal.default(modalRef.current);
+      import('bootstrap/dist/js/bootstrap.bundle').then((bootstrap) => {
+        if (modalRef.current && bootstrap.Modal) {
+          bootstrapModalRef.current = new bootstrap.Modal(modalRef.current);
         }
       });
-
-      // ドロップダウンなど、他の Bootstrap 機能も同様に初期化する場合はここに追加
-      import('bootstrap/js/src/dropdown.js');
     }
 
     return () => {
@@ -194,7 +191,36 @@ const Header = () => {
 
             <div className="modal-area">
               <ul className="link-group">
-                {/* ... (モーダル内のリンク) ... */}
+                <li><Link to="/" onClick={closeModal}>Home</Link></li>
+                <li><Link to="/#About" onClick={closeModal}>About(省略)</Link></li>
+                <li><Link to="/about-detailed" onClick={closeModal}>About(詳細)</Link></li>
+                <li className="nav-item dropdown">
+                  <Link to="#" className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" onClick={(e) => e.preventDefault()}>
+                    Works
+                  </Link>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-item"><Link to='/#landingpages' onClick={closeModal}>Landingpages</Link></li>
+                    <li className="dropdown-item"><Link to="/#wordpress" onClick={closeModal}>Wordpress</Link></li>
+                    <li className="dropdown-item"><Link to="/#banners" onClick={closeModal}>Banners</Link></li>
+                    <li className="dropdown-item"><Link to="/#photos" onClick={closeModal}>photos</Link></li>
+                    <li className="dropdown-item"><Link to="/#videos" onClick={closeModal}>Videos</Link></li>
+                    <li className="dropdown-item"><Link to="/#others" onClick={closeModal}>Others</Link></li>
+                  </ul>
+                </li>
+                <li className="nav-item dropdown">
+                  <Link to="#" className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" onClick={(e) => e.preventDefault()}>
+                    Works(一覧)
+                  </Link>
+                  <ul className="dropdown-menu">
+                    <li><Link to="/category/landingpages" className="dropdown-item" onClick={closeModal}>Landing</Link></li>
+                    <li><Link to="/category/wordpress" className="dropdown-item" onClick={closeModal}>Wordpress</Link></li>
+                    <li><Link to="/category/banners" className="dropdown-item" onClick={closeModal}>Banners</Link></li>
+                    <li><Link to="/category/photos" className="dropdown-item" onClick={closeModal}>Photos</Link></li>
+                    <li><Link to="/category/videos" className="dropdown-item" onClick={closeModal}>Videos</Link></li>
+                    <li><Link to="/category/others" className="dropdown-item" onClick={closeModal}>Others</Link></li>
+                  </ul>
+                </li>
+                <li><Link to="/#Skills" onClick={closeModal}>Skills</Link></li>
               </ul>
             </div>
           </div>
