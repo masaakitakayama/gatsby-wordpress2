@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react"; // Gatsby v3 以降
 import { graphql, Link } from "gatsby";
-import '../css/style.css'
+import { useLocation } from '@reach/router';
+import '../css/style.css';
 import Layout from "../components/layout";
 import circle from '../static/circle.png';
 import needle from '../static/needle.png';
 import SkillsAnimation from '../my_js/skills'; // ← SkillsAnimation コンポーネントをインポート
 
 const IndexPage = ({ data }) => {
-  const { wpgraphql } = data;
+  const wpgraphql = data?.wpgraphql;
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location.hash]);
+
+  if (!wpgraphql?.categories?.edges) {
+    console.warn("カテゴリーデータがまだ読み込まれていません:", wpgraphql);
+    return <p>カテゴリーデータを読み込み中...</p>; // ローディング表示
+  }
+
   const categories = wpgraphql.categories.edges
     .map(({ node }) => node)
-    .filter(category => category.slug !== 'uncategorized'); // 'uncategorized' を除外
+    .filter(category => category.slug !== 'uncategorized');
 
   return (
     <Layout>
@@ -45,15 +63,15 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
-        {categories.map(category => (
+          {categories.map(category => (
           <section key={category.slug} className={`${category.slug}`} id={`${category.slug}`}>
             <div className="container">
               <h2 className="sub-title">{category.name}</h2>
               <div className="row g-1">
                 {category.posts.nodes.map((post) => (
                   <div className="card col-12 col-md-6 col-xl-4 mt-4" key={post.slug}>
-                  <Link to={`/${post.slug}`}>
-                    <div className="">
+                    <Link to={`/${post.slug}`}>
+                      <div className="">
                         {post.featuredImage?.node?.sourceUrl && (
                           <img
                             src={post.featuredImage.node.sourceUrl}
@@ -62,16 +80,16 @@ const IndexPage = ({ data }) => {
                           />
                         )}
                         <h3 className="card-title h5">{post.title}</h3>
-                    </div>
-                  </Link>
+                      </div>
+                    </Link>
                   </div>
                 ))}
               </div>
               <div className="mt-3">
-              <Link className="categoryButton" to={`/category/${category.slug}`}>{category.slug}
-                <div className="button-left"></div>
-                <div className="arrow"></div>
-              </Link>
+                <Link className="categoryButton" to={`/category/${category.slug}`}>{category.slug}
+                  <div className="button-left"></div>
+                  <div className="arrow"></div>
+                </Link>
               </div>
             </div>
           </section>

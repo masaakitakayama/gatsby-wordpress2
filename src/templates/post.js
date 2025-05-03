@@ -1,7 +1,7 @@
 // src/templates/post.js
 import React from "react";
 import { graphql } from "gatsby";
-import styles from "../css/single.css";
+import single from "../css/single.css";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 
