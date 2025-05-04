@@ -10,6 +10,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "../components/header";
 import './header';
 import "./layout.css";
+import useScrollTop from '../hooks/useScrollTop';
 
 
 const Layout = ({ children }) => {

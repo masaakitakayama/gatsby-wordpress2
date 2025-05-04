@@ -17,9 +17,27 @@
   top: 50%;
   left: 5%;
   transform: translateY(-50%);
-  width: 25%;
+  width: 30%;
   height: auto;
   transition: all 1s;
+}
+
+@media (min-width:568px){
+  .header__body-logo-link{
+    width: 20%;
+  }
+}
+
+@media (min-width: 768px) {
+  .header__body-logo-link {
+    width: 15%;
+  }
+}
+
+@media (min-width: 992px) {
+  .header__body-logo-link {
+    width: 10%;
+  }
 }
 
 .header__body-logo-outer {
@@ -34,16 +52,9 @@
   object-fit: cover;
 }
 
-@media (min-width: 768px) {
-  .header__body-logo-link {
-    width: 15%;
-  }
-}
-
-@media (min-width: 992px) {
-  .header__body-logo-link {
-    width: 100px;
-  }
+.header__body-logo-item{
+  width: 100%;
+  margin-bottom: 0;
 }
 
 /* ハンバーガーメニュー */
@@ -98,23 +109,40 @@
   list-style: none; /* ul 要素のリストマーカーを削除 */
 }
 
-.header .dropdown .drop-item {
+.header .display-menu .dropdown-item{
+  color: black;
   font-size: 1.1rem;
   transition: all 1s;
+  margin-right:0.5rem;
   padding: 0; /* button 要素のデフォルトパディングをリセット */
   background: none; /* button 要素のデフォルト背景を削除 */
   border: none; /* button 要素のデフォルトボーダーを削除 */
   cursor: pointer; /* カーソルを指マークに */
 }
 
-.header .dropdown .drop-item:hover,
-.header .dropdown .drop-item:focus {
+.header .display-menu .drop-item {
+  color: black;
+  font-size: 1.1rem;
+  transition: all 1s;
+  margin-right:0.5rem;
+  padding: 0; /* button 要素のデフォルトパディングをリセット */
+  background: none; /* button 要素のデフォルト背景を削除 */
+  border: none; /* button 要素のデフォルトボーダーを削除 */
+  cursor: pointer; /* カーソルを指マークに */
+}
+
+.header .display-menu .drop-item:hover,
+.header .display-menu .drop-item:focus,
+.header .display-menu .dropdown-item:hover,
+.header .display-menu .dropdown-item:focus
+{
   color: #6BB7D1;
   outline: none; /* フォーカス時のデフォルトアウトラインを削除 */
+  transition: all 0.4s;
 }
 
 /* ドロップダウンメニュー */
-.header .dropdown .dropdown-menu {
+.header .display-menu .dropdown-menu {
   padding: 0; /* ul 要素のデフォルトパディングをリセット */
   margin: 0;
   border: none; /* デフォルトのボーダーを削除 */
@@ -136,9 +164,17 @@
   outline: none; /* フォーカス時のデフォルトアウトラインを削除 */
 }
 
-/* モーダル */
-.modal {
-  /* Bootstrap のデフォルトスタイルはそのまま */
+.modal_logo-link{
+  margin-bottom: 0;
+}
+
+.modal_logo_outer{
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.modal_logo_item{
+  margin-bottom: 0;
 }
 
 .modal .modal-body{
@@ -170,100 +206,24 @@
   display: inline-block; /* ロゴをインラインブロックに */
 }
 
+.modal-content .dropdown-item{
+  width: fit-content;
+  font-size: 1.25rem;
+}
+
+.modal-content .dropdown-toggle{
+  width: fit-content;
+  font-size: 1.25rem;
+}
+
 .modal .logo {
   width: 60%;
   height: auto;
   display: block; /* 画像をブロック要素に */
 }
 
-/* モーダルエリア */
-.modal-area {
-  padding-top: 1.5rem; /* ヘッダーとの間隔 */
-}
-
-.modal-area .link-group {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.modal-area .dropdown-menu {
-  padding: 1.5rem 1rem;
-  margin: 0;
-  background-color: rgba(255, 255, 255, 0.1); /* 薄い背景色 */
-  border: none;
-  border-radius: 0.25rem;
-}
-
-.modal-area .dropdown-item {
-  margin: 0; /* デフォルトマージンをリセット */
-  padding: 0.75rem 1rem;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.modal-area .dropdown-item:hover,
-.modal-area .dropdown-item:focus {
-  background-color: rgba(255, 255, 255, 0.2); /* ホバー時の背景色 */
-  color: white;
-  outline: none;
-}
-
-.modal-area .dropdown-item--fcb {
-  color: #6BB7D1;
-}
-
-.modal-area .dropdown-toggle {
-  color: white;
-  font-size: 1.1rem;
-  padding: 0.75rem 0;
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.modal-area .dropdown-toggle::after {
-  filter: invert(1); /* ドロップダウン矢印の色を白に */
-}
-
-.modal-dialog .dropdown .dropdown-menu{
-  background-color: white !important;
-  color: #6BB7D1 !important;
-}
-
-.modal-area .link-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.modal-area .link {
-  font-size: 1.5rem;
-  color: white;
-  display: block;
-  margin-top: 1rem;
-  position: relative;
-  text-decoration: none; /* リンクの下線を削除 */
-}
-
-.modal-area .link::before {
-  content: "";
-  width: 20px;
-  height: 3px;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: -8px;
-  transform: translateX(-100%) translateY(-50%);
-}
-
-.modal-area .link-small {
-  font-size: 1rem;
-  margin-left: 0.5rem;
+.modal-body{
+  margin-top: 2rem;
 }
 
 .modal-dialog .dropdown .dropdown-menu {

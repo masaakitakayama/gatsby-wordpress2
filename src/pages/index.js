@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"; // Gatsby v3 以降
+import React, { useEffect, useRef } from "react"; // Gatsby v3 以降
 import { graphql, Link } from "gatsby";
 import { useLocation } from '@reach/router';
 import '../css/style.css';
@@ -6,12 +6,22 @@ import Layout from "../components/layout";
 import circle from '../static/circle.png';
 import needle from '../static/needle.png';
 import SkillsAnimation from '../my_js/skills'; // ← SkillsAnimation コンポーネントをインポート
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitText from 'gsap/SplitText'; // SplitText プラグインもインポート
 
 const IndexPage = ({ data }) => {
   const wpgraphql = data?.wpgraphql;
   const location = useLocation();
+  const isFirstLoad = useRef(true);
+  const aboutTitleRef = useRef(null); // "About" の <h2> 要素の ref を作成
 
   useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return; // 初回読み込み時は何もしない
+    }
+
     if (location.hash) {
       const id = location.hash.substring(1);
       const element = document.getElementById(id);
@@ -20,6 +30,51 @@ const IndexPage = ({ data }) => {
       }
     }
   }, [location.hash]);
+
+  const ScrollAnimatedText = ({
+    targetElement,// アニメーションを適用する要素 (ref を渡す)
+    splitType = 'chars', // SplitText を使用するかどうかと分割の種類 ('chars', 'words', 'lines')
+    animationProps = { x: 100, opacity: 0, duration: 0.4, ease: "power4", stagger: 0.04 },
+    scrollTriggerProps = { start: "top 80%", end: "bottom 20%" },
+    once = false,
+  }) => {
+    const splitTextRef = useRef(null);
+    let split;
+    let animation;
+
+    useEffect(() => {
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      const element = targetElement?.current;
+
+      if (element) {
+        let animatedTarget = element;
+        if (splitType) {
+          split = new SplitText(element, { type: splitType });
+          splitTextRef.current = split;
+          animatedTarget = split.chars;
+        }
+
+        animation = gsap.from(animatedTarget, {
+          ...animationProps,
+          scrollTrigger: {
+            trigger: element,
+            ...scrollTriggerProps,
+            once: once,
+          },
+        });
+      }
+
+      return () => {
+        if (splitTextRef.current) {
+          splitTextRef.current.revert();
+        }
+        animation && animation.kill();
+      };
+    }, [targetElement, splitType, animationProps, scrollTriggerProps, once]);
+
+    return null; // このコンポーネントはレンダリングする要素を持たない
+  };
 
   if (!wpgraphql?.categories?.edges) {
     console.warn("カテゴリーデータがまだ読み込まれていません:", wpgraphql);
@@ -40,7 +95,14 @@ const IndexPage = ({ data }) => {
       <section>
         <div id="About" className="about">
           <div className="container">
-            <h2 className="main-title">About</h2>
+          <h2 ref={aboutTitleRef} className="main-title">About</h2>
+          <ScrollAnimatedText
+            targetElement={aboutTitleRef} // 作成した ref を targetElement prop として渡す
+            splitType="chars"
+            animationProps={{ y: 30, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }}
+            scrollTriggerProps={{ start: "top 70%", end: "bottom 30%" }}
+            once={true}
+          />
             <div className="row align-items-center">
               <div className="col-12 col-md-8 col-xl-3 offset-md-2 offset-xl-0">
                 <div className="image-outer">
@@ -66,7 +128,7 @@ const IndexPage = ({ data }) => {
           {categories.map(category => (
           <section key={category.slug} className={`${category.slug}`} id={`${category.slug}`}>
             <div className="container">
-              <h2 className="sub-title">{category.name}</h2>
+            <h2 className="sub-title">{category.name}</h2>
               <div className="row g-1">
                 {category.posts.nodes.map((post) => (
                   <div className="card col-12 col-md-6 col-xl-4 mt-4" key={post.slug}>

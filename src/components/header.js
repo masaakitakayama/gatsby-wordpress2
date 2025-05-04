@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import '../css/header.css';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { Modal } from 'react-bootstrap'; // Button は使用していません
+import logo_blue from '../static/logo_blue.png';
+import logo_white from '../static/logo_white.png';
 
 const Header = () => {
   const [show, setShow] = useState(false);
@@ -13,22 +15,23 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (show) {
+        // スクロールが開始されたらすぐにヘッダーを閉じる
+        handleClose();
+      }
       isScrolling.current = true;
       clearTimeout(scrollTimeout.current);
       scrollTimeout.current = setTimeout(() => {
         isScrolling.current = false;
-        // スクロールが停止したと判断し、モーダルを閉じる
-        if (show) { // モーダルが開いている場合のみ閉じる
-          handleClose();
-        }
-      }, 50); // スクロール停止とみなす遅延時間 (調整が必要)
+        // スクロールが停止した後の処理 (必要であれば)
+      }, -1000); // スクロール停止とみなす遅延時間 (調整が必要)
     };
 
     if (show) {
       window.addEventListener('scroll', handleScroll);
     } else {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout.current); // モーダルが閉じられたらタイマーをクリア
+      clearTimeout(scrollTimeout.current); // ヘッダーが閉じられたらタイマーをクリア
     }
 
     return () => {
@@ -38,6 +41,9 @@ const Header = () => {
   }, [show, handleClose]);
 
   const handleAnchorClick = () => {
+    if (show) {
+      handleClose(); // アンカークリック時にもヘッダーを閉じる
+    }
     isScrolling.current = true; // スクロール開始
   };
 
@@ -45,11 +51,11 @@ const Header = () => {
     <>
       <div className="header">
         <div className="header__body">
-          <Link to="/" className="header__body-logo-link">
             <h1 className="header__body-logo-outer">
-              {/* ロゴ */}
-            </h1>
-          </Link>
+            <Link to="/" className="header__body-logo-link">
+            <img className='header__body-logo-item' src={logo_blue} />
+            </Link>
+          </h1>
           <button
             type="button"
             className="d-xl-none modal-1 btn"
@@ -63,7 +69,7 @@ const Header = () => {
               <ul className='d-flex'>
                 <li><Link to="/" className="dropdown-item">Home</Link></li>
                 <li><Link to="/#about" className="dropdown-item">About(省略)</Link></li>
-                <li><Link to="/about-detailed" className="dropdown-item">About(詳細)</Link></li>
+                <li><Link to="/about_detaill" className="dropdown-item">About(詳細)</Link></li>
                 <li className="nav-item dropdown">
                   <button
                     className="drop-item btn dropdown-toggle"
@@ -109,15 +115,17 @@ const Header = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Link to="/" className="logo-link">
-            <h1>{/* ロゴ */}</h1>
+          <Link to="/" className="modal_logo-link">
+            <h1 className='modal_logo_outer'>
+              <img className='modal_logo_item' to="/" src={logo_white} />
+            </h1>
           </Link>
         </Modal.Header>
         <Modal.Body>
           <ul className="link-group">
             <li><Link className='dropdown-item' to="/" onClick={handleClose}>Home</Link></li>
             <li><AnchorLink className='dropdown-item' to="/#About" onClick={handleClose}>About(省略)</AnchorLink></li>
-            <li><Link className='dropdown-item' to="/#about" onClick={handleClose}>About(詳細)</Link></li>
+            <li><Link className='dropdown-item' to="/about_detaill" onClick={handleClose}>About(詳細)</Link></li>
             <li className="nav-item dropdown">
               <div
                 className="dropdown-toggle"
