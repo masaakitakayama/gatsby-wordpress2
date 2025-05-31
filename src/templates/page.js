@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import "../css/page.css"
-import Layout from '../components/layout'; // レイアウトコンポーネント（任意）
+import "../css/about.css"
 
 const Page = ({ data }) => {
   const {
@@ -11,7 +11,7 @@ const Page = ({ data }) => {
 
 
   return (
-		<Layout> {/* レイアウトコンポーネントを使用する場合 */}
+		<> {/* レイアウトコンポーネントを使用する場合 */}
 			<section className='area'>
 			<div className='container'>
       <h1 className='main-title'>{page.title}</h1>
@@ -25,7 +25,7 @@ const Page = ({ data }) => {
 				)}
 				</div>
 				</section>
-    </Layout>
+    </>
   );
 };
 

@@ -1,0 +1,128 @@
+.area {
+  padding: 3rem 0 0rem;
+}
+.area .main-title {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  transform: skewX(-10deg);
+}
+@media (min-width: 1200px) {
+  .area .main-title {
+    font-size: 4rem;
+  }
+}
+.area .main-title::first-letter {
+  font-size: 4rem;
+  color: transparent;
+  background: linear-gradient(to right, #1466C7, #6BB7D1);
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+@media (min-width: 1200px) {
+  .area .main-title::first-letter {
+    font-size: 5rem;
+  }
+}
+.area .group-inner {
+  border-bottom: 2px solid #D3D3D3;
+  padding: 0 0 2rem;
+}
+.area .group-inner-last {
+  border-bottom: none;
+  padding: 0 0 5rem;
+}
+@media (min-width: 1200px) {
+  .area .group-inner-last {
+    padding: 0 0 6rem;
+  }
+}
+.area .image-outer {
+  margin: 2rem 0 0 0;
+}
+@media (min-width: 1200px) {
+  .area .image-outer {
+    margin: 2rem 0 0 0;
+  }
+}
+.area .image {
+  width: 60%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .area .image {
+    width: 100%;
+  }
+}
+.area .name {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+@media (min-width: 1200px) {
+  .area .name {
+    font-size: 1.5rem;
+  }
+}
+.area .small-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin: 0 0 0 0.5rem;
+}
+@media (min-width: 1200px) {
+  .area .small-name {
+    font-size: 1rem;
+  }
+}
+
+.area .block1 p{
+margin-top: 0
+}
+
+.area .block2 {
+  h4{
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  }
+}
+
+.area .block3 h4{
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.area .block4{
+  h4{
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  }
+ .text1, .text2, .text3{
+    text-align: center;
+  }
+}
+
+.area .block5 {
+  h4{
+    font-size: 2rem;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  h5{
+    text-align: center;
+  }
+}

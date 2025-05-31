@@ -1,25 +1,41 @@
-import React, { useEffect, useRef } from "react"; // Gatsby v3 以降
+import React, { useEffect, useRef, useCallback } from "react";
 import { graphql, Link } from "gatsby";
 import { useLocation } from '@reach/router';
 import '../css/style.css';
 import Layout from "../components/layout";
 import circle from '../static/circle.png';
 import needle from '../static/needle.png';
-import SkillsAnimation from '../my_js/skills'; // ← SkillsAnimation コンポーネントをインポート
+import SkillsAnimation from '../my_js/skills';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitText from 'gsap/SplitText'; // SplitText プラグインもインポート
+import SplitText from 'gsap/SplitText';
 
 const IndexPage = ({ data }) => {
   const wpgraphql = data?.wpgraphql;
   const location = useLocation();
   const isFirstLoad = useRef(true);
-  const aboutTitleRef = useRef(null); // "About" の <h2> 要素の ref を作成
+  const aboutTitleRef = useRef(null);
+
+  // ★ 1. categoryTitleRefs の初期化に関する useEffect をトップレベルに移動
+  //    wpgraphql データが変更されるたびに実行
+  useEffect(() => {
+    if (wpgraphql?.categories?.edges) {
+      const currentCategories = wpgraphql.categories.edges
+        .map(({ node }) => node)
+        .filter(category => category.slug !== 'uncategorized');
+
+      // categoryTitleRefs.current の長さを調整
+      // categories の数が変わったときにのみ実行されるように、依存配列を categories.length にする代わりに
+      // wpgraphql の変更時に実行し、その中で長さを決定する
+    } else {
+      // データがない場合（初期状態など）は空の配列をセットしておく
+    }
+  }, [wpgraphql]); // wpgraphql データが変更されたときに実行
 
   useEffect(() => {
     if (isFirstLoad.current) {
       isFirstLoad.current = false;
-      return; // 初回読み込み時は何もしない
+      return;
     }
 
     if (location.hash) {
@@ -31,11 +47,12 @@ const IndexPage = ({ data }) => {
     }
   }, [location.hash]);
 
+  // ScrollAnimatedText コンポーネントの定義
   const ScrollAnimatedText = ({
-    targetElement,// アニメーションを適用する要素 (ref を渡す)
-    splitType = 'chars', // SplitText を使用するかどうかと分割の種類 ('chars', 'words', 'lines')
-    animationProps = { x: 100, opacity: 0, duration: 0.4, ease: "power4", stagger: 0.04 },
-    scrollTriggerProps = { start: "top 80%", end: "bottom 20%" },
+    targetElement,
+    splitType = 'chars',
+    animationProps = { y: 30, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }, // 初期値に戻す
+    scrollTriggerProps = { start: "top 70%", end: "bottom 30%" }, // 初期値に戻す
     once = false,
   }) => {
     const splitTextRef = useRef(null);
@@ -45,7 +62,7 @@ const IndexPage = ({ data }) => {
     useEffect(() => {
       gsap.registerPlugin(ScrollTrigger, SplitText);
 
-      const element = targetElement?.current;
+      const element = targetElement?.current || targetElement;
 
       if (element) {
         let animatedTarget = element;
@@ -54,6 +71,14 @@ const IndexPage = ({ data }) => {
           splitTextRef.current = split;
           animatedTarget = split.chars;
         }
+
+        // 初期状態で非表示にするなど、アニメーション前の状態を設定
+        // animationProps に opacity: 0 が含まれているため、これは不要かもしれません
+        // 必要に応じて、gsap.set(animatedTarget, { opacity: 0 }); などを追加
+        // ただし、animationPropsにy:30, opacity:0が含まれているので、
+        // fromアニメーションは自動的に初期状態を処理します。
+        // もし要素が最初から見えてしまっているなら、CSSで初期状態を非表示にするか、
+        // より早い段階でgsap.setで初期状態を設定する必要があります。
 
         animation = gsap.from(animatedTarget, {
           ...animationProps,
@@ -71,38 +96,47 @@ const IndexPage = ({ data }) => {
         }
         animation && animation.kill();
       };
-    }, [targetElement, splitType, animationProps, scrollTriggerProps, once]);
+    }, [targetElement, splitType, JSON.stringify(animationProps), JSON.stringify(scrollTriggerProps), once]); // オブジェクトは依存配列に直接入れられないので、JSON.stringify を使うか、分解する
 
-    return null; // このコンポーネントはレンダリングする要素を持たない
+    return null;
   };
 
+  // ★ 2. categories の定義は、データが利用可能になってから行う
+  // この if 文は Hooks の呼び出し順序に影響しないように、
+  // Hooks の定義の後に配置する
   if (!wpgraphql?.categories?.edges) {
     console.warn("カテゴリーデータがまだ読み込まれていません:", wpgraphql);
-    return <p>カテゴリーデータを読み込み中...</p>; // ローディング表示
+    return <p>カテゴリーデータを読み込み中...</p>;
   }
 
   const categories = wpgraphql.categories.edges
     .map(({ node }) => node)
     .filter(category => category.slug !== 'uncategorized');
 
+  // コンソールで categoryTitleRefs を確認する場合は、
+  // 開発時のみ:
+  // useEffect(() => {
+  //   console.log("Current categoryTitleRefs (after data loaded):", categoryTitleRefs.current);
+  // }, [categories]); // categories の更新時や初回レンダリング後に確認
+
   return (
     <Layout>
-    <section>
-      <div className="firstview">
-      </div>
+      <section>
+        <div className="firstview">
+        </div>
       </section>
 
       <section>
         <div id="About" className="about">
           <div className="container">
-          <h2 ref={aboutTitleRef} className="main-title">About</h2>
-          <ScrollAnimatedText
-            targetElement={aboutTitleRef} // 作成した ref を targetElement prop として渡す
-            splitType="chars"
-            animationProps={{ y: 30, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }}
-            scrollTriggerProps={{ start: "top 70%", end: "bottom 30%" }}
-            once={true}
-          />
+            <h2 ref={aboutTitleRef} className="main-title">About</h2>
+            <ScrollAnimatedText
+              targetElement={aboutTitleRef}
+              splitType="chars"
+              animationProps={{ y: 30, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }}
+              scrollTriggerProps={{ start: "top 70%", end: "bottom 30%" }}
+              once={true}
+            />
             <div className="row align-items-center">
               <div className="col-12 col-md-8 col-xl-3 offset-md-2 offset-xl-0">
                 <div className="image-outer">
@@ -111,11 +145,11 @@ const IndexPage = ({ data }) => {
               <div className="col-12 col-xl-9">
                 <span className="name">M.T</span>
                 <p className="text">
-                  私は中高6年間陸上競技の走幅跳と三段跳をしていました。陸上競技を通して仲間と協力する事の大切さや継続して物事に取り組む事の大切さを学びました。現在利用している就労移行支援で学んだウェブデザイン、動画制作のスキルを生かして様々な会社が抱える課題を解決していきたいです。
+
                 </p>
               </div>
             </div>
-            <Link to="/about" className="button">
+            <Link to="/about_detaill" className="button">
               自己紹介詳細へ
               <div className="button-left">
                 <div className="arrow"></div>
@@ -125,37 +159,38 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
-          {categories.map(category => (
-          <section key={category.slug} className={`${category.slug}`} id={`${category.slug}`}>
-            <div className="container">
+      {categories.map((category, index) => (
+        <section key={category.slug} className={`${category.slug}`} id={`${category.slug}`}>
+          <div className="container">
             <h2 className="sub-title">{category.name}</h2>
-              <div className="row g-1">
-                {category.posts.nodes.map((post) => (
-                  <div className="card col-12 col-md-6 col-xl-4 mt-4" key={post.slug}>
-                    <Link to={`/${post.slug}`}>
-                      <div className="">
-                        {post.featuredImage?.node?.sourceUrl && (
-                          <img
-                            src={post.featuredImage.node.sourceUrl}
-                            className="featuredImage"
-                            alt={post.title}
-                          />
-                        )}
-                        <h3 className="card-title h5">{post.title}</h3>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3">
-                <Link className="categoryButton" to={`/category/${category.slug}`}>{category.slug}
-                  <div className="button-left"></div>
-                  <div className="arrow"></div>
-                </Link>
-              </div>
+            <div className="row g-1">
+              {category.posts.nodes.map((post) => (
+                <div className="card col-12 col-md-6 col-xl-4 mt-4" key={post.slug}>
+                  <Link to={`/${post.slug}`}>
+                    <div className="">
+                      {post.featuredImage?.node?.sourceUrl && (
+                        <img
+                          src={post.featuredImage.node.sourceUrl}
+                          className="featuredImage"
+                          alt={post.title}
+                        />
+                      )}
+                      <h3 className="card-title h5">{post.title}</h3>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </div>
-          </section>
-        ))}
+            <div className="mt-3">
+              <Link className="categoryButton" to={`/category/${category.slug}`}>
+                {category.slug}
+                <div className="button-left"></div>
+                <div className="arrow"></div>
+              </Link>
+            </div>
+          </div>
+        </section>
+      ))}
 
           <section id="Skills" className="skills">
               <div className="container">

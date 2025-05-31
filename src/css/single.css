@@ -2,7 +2,6 @@
 	margin-top: 5rem;
 }
 
-
 .single .section-title {
 	width: -moz-fit-content;
 	width: fit-content;
@@ -21,7 +20,6 @@
 		font-size: 4rem;
 	}
 }
-
 
 .single h3{
 	font-size: 2rem;
@@ -47,23 +45,18 @@
 	display: inline-block;
 }
 
-.single .container .wp-block-group:nth-child(3){
+.single .container .wp-block-group{
 	border:3px solid #6BB7D1;
 	margin:3rem 0 0 0;
 	padding:0 0 2rem 0;
 }
 
-.single .container .wp-block-group:nth-child(4){
-	border:3px solid #6BB7D1;
-	margin:3rem 0 0 0;
+.single .container .wp-block-group:first-child{
+	border: none;
+	margin:0;
 	padding:0 0 2rem 0;
 }
 
-.single .container .wp-block-group:nth-child(5){
-	border:3px solid #6BB7D1;
-	margin:3rem 0 0 0;
-	padding:0 0 2rem 0;
-}
 
 .single .gatsby-image-wrapper{
 	aspect-ratio:auto;

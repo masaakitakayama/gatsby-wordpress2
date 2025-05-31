@@ -20,17 +20,15 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  // エラーチェック（既存のコード）
   if (categoryResult.errors) {
     console.error(categoryResult.errors);
     throw new Error("GraphQLクエリ (カテゴリー) でエラーが発生しました");
   }
 
-  // カテゴリーページの作成（既存のコード）
   const categories = categoryResult.data.wpgraphql.categories.nodes;
 
   categories.forEach(category => {
-    console.log(`カテゴリーページを作成: ${category.slug}`);
+    console.log(`カテゴリーページを作成: /category/${category.slug}`);
     createPage({
       path: `/category/${category.slug}`,
       component: categoryTemplate,
@@ -50,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
             nodes {
               id
               slug
+              uri
             }
             pageInfo {
               hasNextPage
@@ -77,20 +76,20 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const allPosts = await fetchAllPosts();
 
-  // 投稿ページの作成
   allPosts.forEach(post => {
-    console.log(`投稿ページを作成: ${post.slug}`);
+    console.log(`投稿ページを作成: /${post.slug}`);
     createPage({
       path: `/${post.slug}`,
       component: postTemplate,
       context: {
         id: post.id,
         slug: post.slug,
+        uri: post.uri,
       },
     });
   });
 
-  // 固定ページデータを取得（既存のコード）
+  // 固定ページデータを取得
   const pageResult = await graphql(`
     {
       wpgraphql {
@@ -98,22 +97,33 @@ exports.createPages = async ({ graphql, actions }) => {
           nodes {
             id
             slug
+            uri
+            databaseId
           }
         }
       }
     }
   `);
 
+  if (pageResult.errors) {
+    console.error(pageResult.errors);
+    throw new Error("GraphQLクエリ (固定ページ) でエラーが発生しました");
+  }
+
   const pages = pageResult.data.wpgraphql.pages.nodes;
 
   pages.forEach(page => {
-    console.log(`固定ページを作成: ${page.slug}`);
+    // ★ about-detail 専用テンプレートへの条件分岐を削除
+    // すべての固定ページに汎用テンプレートを使用
+    console.log(`固定ページを作成 (汎用テンプレート): /${page.slug}`);
     createPage({
-      path: `/${page.slug}`,
-      component: pageTemplate,
+      path: `/${page.slug}/`,
+      component: pageTemplate, // 常に pageTemplate を使用
       context: {
         id: page.id,
         slug: page.slug,
+        uri: page.uri,
+        databaseId: page.databaseId,
       },
     });
   });
