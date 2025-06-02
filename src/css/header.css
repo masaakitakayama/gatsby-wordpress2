@@ -2,59 +2,49 @@
 .header {
   width: 100%;
   height: 80px;
-  background-color: white;
+  background-color: var(--header-bg);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 99;
-  transition: all 1s;
+  transition: all 0.3s ease;
 }
 
 /* ヘッダーロゴ */
 .header__body-logo-link {
-  display: block; /* Link をブロック要素にしてロゴ全体をクリック可能に */
+  display: block;
   position: absolute;
   top: 50%;
   left: 5%;
   transform: translateY(-50%);
-  width: 30%;
-  height: auto;
   transition: all 1s;
+  width: 100%;
+  max-width: 150px;
 }
 
-@media (min-width:568px){
-  .header__body-logo-link{
-    width: 20%;
-  }
+.header__body-logo-outer {
+  margin: 0;
+  line-height: 1;
 }
+
+.header__body-logo-item {
+  width: 140%;
+  height: auto;
+  margin-bottom: 0;
+}
+
+/* レスポンシブ対応 */
 
 @media (min-width: 768px) {
   .header__body-logo-link {
-    width: 15%;
+    max-width: 180px;
   }
 }
 
 @media (min-width: 992px) {
   .header__body-logo-link {
-    width: 10%;
+    max-width: 200px;
   }
-}
-
-.header__body-logo-outer {
-  margin: 0; /* h1 要素のデフォルトマージンをリセット */
-  line-height: 1; /* h1 要素の行高を調整 */
-}
-
-.header__body-logo {
-  display: block; /* img 要素をブロック要素に */
-  width: 100%; /* 親要素いっぱいに表示 */
-  height: auto;
-  object-fit: cover;
-}
-
-.header__body-logo-item{
-  width: 100%;
-  margin-bottom: 0;
 }
 
 /* ハンバーガーメニュー */
@@ -110,58 +100,57 @@
 }
 
 .header .display-menu .dropdown-item{
-  color: black;
+  color: var(--header-text);
   font-size: 1.1rem;
-  transition: all 1s;
-  margin-right:0.5rem;
-  padding: 0; /* button 要素のデフォルトパディングをリセット */
-  background: none; /* button 要素のデフォルト背景を削除 */
-  border: none; /* button 要素のデフォルトボーダーを削除 */
-  cursor: pointer; /* カーソルを指マークに */
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .header .display-menu .drop-item {
-  color: black;
+  color: var(--header-text);
   font-size: 1.1rem;
-  transition: all 1s;
-  margin-right:0.5rem;
-  padding: 0; /* button 要素のデフォルトパディングをリセット */
-  background: none; /* button 要素のデフォルト背景を削除 */
-  border: none; /* button 要素のデフォルトボーダーを削除 */
-  cursor: pointer; /* カーソルを指マークに */
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .header .display-menu .drop-item:hover,
 .header .display-menu .drop-item:focus,
 .header .display-menu .dropdown-item:hover,
-.header .display-menu .dropdown-item:focus
-{
-  color: #6BB7D1;
-  outline: none; /* フォーカス時のデフォルトアウトラインを削除 */
+.header .display-menu .dropdown-item:focus {
+  color: var(--accent-color);
+  outline: none;
   transition: all 0.4s;
 }
 
 /* ドロップダウンメニュー */
 .header .display-menu .dropdown-menu {
-  padding: 0; /* ul 要素のデフォルトパディングをリセット */
+  padding: 0;
   margin: 0;
-  border: none; /* デフォルトのボーダーを削除 */
-  background-color: white; /* 必要に応じて背景色を設定 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 必要に応じて影を追加 */
+  border: var(--header-border);
+  background-color: var(--header-bg);
+  box-shadow: var(--card-shadow);
 }
 
 .header .dropdown .dropdown-menu .dropdown-item {
   font-size: 1.1rem;
-  color: black;
+  color: var(--header-text);
   padding: 0.5rem 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .header .dropdown .dropdown-menu .dropdown-item:hover,
 .header .dropdown .dropdown-menu .dropdown-item:focus {
-  background-color: #f8f9fa; /* ホバー時の背景色 */
-  color: #6BB7D1;
-  outline: none; /* フォーカス時のデフォルトアウトラインを削除 */
+  background-color: var(--glass-bg);
+  color: var(--accent-color);
+  outline: none;
 }
 
 .modal_logo-link{

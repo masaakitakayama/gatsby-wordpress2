@@ -48,11 +48,13 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-anchor-links`,
+      resolve: 'gatsby-plugin-anchor-links',
       options: {
-        offset: -100, // 必要に応じて調整
-        duration: 0, // 必要に応じて調整
-      },
+        offset: -80, // ヘッダーの高さ分をオフセット
+        duration: 500, // スクロール時間を500msに設定
+        threshold: 50, // スクロールを開始する閾値
+        stripHash: true
+      }
     }
   ],
 }

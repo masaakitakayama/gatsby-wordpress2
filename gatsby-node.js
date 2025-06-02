@@ -1,40 +1,45 @@
 const path = require('path');
-const categoryTemplate = require.resolve('./src/templates/category.js');
-const postTemplate = require.resolve('./src/templates/post.js');
-const pageTemplate = require.resolve('./src/templates/page.js');
+const categoryTemplate = require.resolve('./src/templates/category.jsx');
+const postTemplate = require.resolve('./src/templates/post.jsx');
+const pageTemplate = require.resolve('./src/templates/page.jsx');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // カテゴリーデータを取得（既存のコード）
-  const categoryResult = await graphql(`
-    {
+  // カテゴリーページの作成
+  const categoryTemplate = path.resolve('./src/templates/category.jsx');
+
+  const result = await graphql(`
+    query {
       wpgraphql {
         categories {
-          nodes {
-            id
-            slug
+          edges {
+            node {
+              id
+              slug
+            }
           }
         }
       }
     }
   `);
 
-  if (categoryResult.errors) {
-    console.error(categoryResult.errors);
-    throw new Error("GraphQLクエリ (カテゴリー) でエラーが発生しました");
+  if (result.errors) {
+    console.error(result.errors);
+    return;
   }
 
-  const categories = categoryResult.data.wpgraphql.categories.nodes;
+  const categories = result.data.wpgraphql.categories.edges;
 
-  categories.forEach(category => {
-    console.log(`カテゴリーページを作成: /category/${category.slug}`);
+  categories.forEach(({ node }) => {
+    const path = `/category/${node.slug}`;
+    console.log('カテゴリーページを作成:', path);
     createPage({
-      path: `/category/${category.slug}`,
+      path,
       component: categoryTemplate,
       context: {
-        id: category.id,
-        slug: category.slug,
+        id: node.id,
+        slug: node.slug,
       },
     });
   });

@@ -15,22 +15,50 @@ const IndexPage = ({ data }) => {
   const location = useLocation();
   const isFirstLoad = useRef(true);
   const aboutTitleRef = useRef(null);
+  const skillsTitleRef = useRef(null);
+  const categoryTitleRefs = useRef({});
 
-  // ★ 1. categoryTitleRefs の初期化に関する useEffect をトップレベルに移動
-  //    wpgraphql データが変更されるたびに実行
   useEffect(() => {
-    if (wpgraphql?.categories?.edges) {
-      const currentCategories = wpgraphql.categories.edges
-        .map(({ node }) => node)
-        .filter(category => category.slug !== 'uncategorized');
-
-      // categoryTitleRefs.current の長さを調整
-      // categories の数が変わったときにのみ実行されるように、依存配列を categories.length にする代わりに
-      // wpgraphql の変更時に実行し、その中で長さを決定する
-    } else {
-      // データがない場合（初期状態など）は空の配列をセットしておく
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
     }
-  }, [wpgraphql]); // wpgraphql データが変更されたときに実行
+  }, []);
+
+  // カテゴリータイトルのアニメーション用のuseEffect
+  useEffect(() => {
+    if (!wpgraphql?.categories?.edges || typeof window === 'undefined') return;
+
+    const categories = wpgraphql.categories.edges
+      .map(({ node }) => node)
+      .filter(category => category.slug !== 'uncategorized');
+
+    categories.forEach(category => {
+      const element = categoryTitleRefs.current[category.slug];
+      if (element) {
+        // 初期状態を設定
+        gsap.set(element, {
+          opacity: 0,
+          y: 60,
+          className: 'sub-title'
+        });
+
+        // アニメーションを設定
+        gsap.to(element, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 70%",
+            end: "bottom 30%",
+            toggleClass: { targets: element, className: "visible" },
+            once: true
+          }
+        });
+      }
+    });
+  }, [wpgraphql]);
 
   useEffect(() => {
     if (isFirstLoad.current) {
@@ -47,11 +75,90 @@ const IndexPage = ({ data }) => {
     }
   }, [location.hash]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // カテゴリーごとのカードアニメーション
+      document.querySelectorAll('.category-section').forEach((section) => {
+        const cards = section.querySelectorAll('.card');
+
+        gsap.set(cards, {
+          opacity: 0
+        });
+
+        gsap.to(cards, {
+          opacity: 1,
+          duration: 1,
+          stagger: {
+            each: 0.25,
+            ease: "none"
+          },
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 50%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            markers: false,
+            once: true
+          }
+        });
+      });
+
+      // About title animation
+      if (aboutTitleRef.current) {
+        gsap.set(aboutTitleRef.current, {
+          opacity: 0,
+          y: 30,
+          className: 'main-title'
+        });
+
+        gsap.to(aboutTitleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: aboutTitleRef.current,
+            start: "top 70%",
+            end: "bottom 30%",
+            toggleClass: { targets: aboutTitleRef.current, className: "visible" },
+            once: true
+          }
+        });
+      }
+
+      // Skills title animation
+      if (skillsTitleRef.current) {
+        gsap.set(skillsTitleRef.current, {
+          opacity: 0,
+          y: 30,
+          className: 'main-title'
+        });
+
+        gsap.to(skillsTitleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: skillsTitleRef.current,
+            start: "top 70%",
+            end: "bottom 30%",
+            toggleClass: { targets: skillsTitleRef.current, className: "visible" },
+            once: true
+          }
+        });
+      }
+    }
+  }, []);
+
   // ScrollAnimatedText コンポーネントの定義
   const ScrollAnimatedText = ({
     targetElement,
     splitType = 'chars',
-    animationProps = { y: 30, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }, // 初期値に戻す
+    animationProps = { y: 50, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }, // 初期値に戻す
     scrollTriggerProps = { start: "top 70%", end: "bottom 30%" }, // 初期値に戻す
     once = false,
   }) => {
@@ -149,20 +256,24 @@ const IndexPage = ({ data }) => {
                 </p>
               </div>
             </div>
-            <Link to="/about_detaill" className="button">
+            <Link to="/about_detaill" className="button button--primary">
               自己紹介詳細へ
-              <div className="button-left">
-                <div className="arrow"></div>
-              </div>
+              <span className="arrow"></span>
             </Link>
           </div>
         </div>
       </section>
 
       {categories.map((category, index) => (
-        <section key={category.slug} className={`${category.slug}`} id={`${category.slug}`}>
+        <section key={category.slug} className={`${category.slug} category-section`} id={`${category.slug}`}>
           <div className="container">
-            <h2 className="sub-title">{category.name}</h2>
+            <h2
+              className="sub-title"
+              ref={el => categoryTitleRefs.current[category.slug] = el}
+              style={{ opacity: 0 }}  // 初期状態で非表示
+            >
+              {category.name}
+            </h2>
             <div className="row g-1">
               {category.posts.nodes.map((post) => (
                 <div className="card col-12 col-md-6 col-xl-4 mt-4" key={post.slug}>
@@ -194,7 +305,14 @@ const IndexPage = ({ data }) => {
 
           <section id="Skills" className="skills">
               <div className="container">
-                <h2 className="main-title">Skills</h2>
+                <h2 ref={skillsTitleRef} className="main-title">Skills</h2>
+                <ScrollAnimatedText
+                  targetElement={skillsTitleRef}
+                  splitType="chars"
+                  animationProps={{ y: 30, opacity: 0, duration: 0.5, ease: "power3.out", stagger: 0.02 }}
+                  scrollTriggerProps={{ start: "top 70%", end: "bottom 30%" }}
+                  once={true}
+                />
                 <div className="outer">
                   <div className="row">
                     <div className="col-12 col-md-6 col-xl-4">

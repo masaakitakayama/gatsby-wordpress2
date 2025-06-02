@@ -1,0 +1,146 @@
+.about-detaill {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-detaill .container {
+  padding: 0 1rem;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.profile-section {
+  margin-bottom: 3rem;
+}
+
+.profile-grid {
+  margin-bottom: 2rem;
+}
+
+.profile-info {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1466C7;
+}
+
+.profile-info dl {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+}
+
+.profile-info dt {
+  font-weight: bold;
+  color: #555;
+}
+
+.profile-info dd {
+  margin: 0;
+}
+
+.career-section,
+.hobbies-section,
+.career-plan-section,
+.strengths-section {
+  margin-bottom: 3rem;
+}
+
+.career-section h2,
+.hobbies-section h2,
+.career-plan-section h2,
+.strengths-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1466C7;
+  border-bottom: 2px solid #1466C7;
+  padding-bottom: 0.5rem;
+}
+
+.career-goals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.career-goal {
+  background: linear-gradient(135deg, #40B3FF, #6BB7D1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+}
+
+.career-goal h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.strength {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.strength h3 {
+  color: #1466C7;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.strength p {
+  line-height: 1.6;
+  color: #444;
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.button--primary {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #1466C7, #0A4C8B);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .profile-info dl {
+    grid-template-columns: 1fr;
+  }
+
+  .career-goals {
+    grid-template-columns: 1fr;
+  }
+
+  .about-detaill {
+    padding: 1rem 0;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+}
