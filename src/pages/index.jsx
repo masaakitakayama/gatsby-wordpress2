@@ -247,7 +247,7 @@ const IndexPage = ({ data }) => {
   // }, [categories]); // categories の更新時や初回レンダリング後に確認
 
   return (
-    <Layout>
+    <Layout location={location}>
       <section>
         <div className="firstview" ref={firstviewRef}>
           <div className="firstview__animation">
@@ -292,6 +292,7 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
+      <span className="works-title">Works</span>
       {categories.map((category, index) => (
         <section key={category.slug} className={`${category.slug} category-section`} id={`${category.slug}`}>
           <div className="container">
@@ -302,9 +303,9 @@ const IndexPage = ({ data }) => {
             >
               {category.name}
             </h2>
-            <div className="row g-1">
+            <div className="row">
               {category.posts.nodes.map((post) => (
-                <div className="card col-12 col-md-6 col-xl-4 mt-4" key={post.slug}>
+                <div className="card col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0" key={post.slug}>
                   <Link to={`/${post.slug}`}>
                     <div className="">
                       {post.featuredImage?.node?.sourceUrl && (
@@ -343,7 +344,7 @@ const IndexPage = ({ data }) => {
                 />
                 <div className="outer">
                   <div className="row">
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-1">
                         <h5 className="box-name">HTML・CSS/Sass</h5>
                         <div className="image-outer image-outer-1">
@@ -354,7 +355,7 @@ const IndexPage = ({ data }) => {
                         <p className="text">どの端末から見ても綺麗に見る事が出来るようなレスポンシブデザインが可能です。BEM記法についての知識があり、即戦力として仕事に取り組む事が出来ます。</p>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-2">
                         <h5 className="box-name">Adobe XD</h5>
                         <div className="image-outer image-outer-2">
@@ -365,7 +366,7 @@ const IndexPage = ({ data }) => {
                         <p className="text">ウェブサイト、バナー等様々な物をXDで効率的に作成する事が出来ます。グリッドを使って規則性を意識したデザインを可能にします。それによりコーディングをより早く、修正を簡単に出来ます。</p>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-3">
                         <h5 className="box-name">photoshop</h5>
                         <div className="image-outer image-outer-3">
@@ -377,7 +378,7 @@ const IndexPage = ({ data }) => {
                       </div>
                     </div>
 
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-4">
                         <h5 className="box-name">Javascript/jQuery</h5>
                         <div className="image-outer image-outer-4">
@@ -388,7 +389,7 @@ const IndexPage = ({ data }) => {
                         <p className="text">スライダーの実装やクリックで画像が切り替わる機能等の経験をしました。今後はよりUI、UXを意識したサイトを作成していきたいので、技術を高めていきたいです。</p>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-5">
                         <h5 className="box-name">premier pro</h5>
                         <div className="image-outer image-outer-5">
@@ -399,7 +400,7 @@ const IndexPage = ({ data }) => {
                         <p className="text">不動産、インタビュー動画、自分で構成を考えた動画制作を経験しました。カット、テロップ、音楽の入れ方等基本的な操作は問題なく出来ます。</p>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-6">
                         <h5 className="box-name">Aftereffect</h5>
                         <div className="image-outer image-outer-6">
@@ -411,7 +412,7 @@ const IndexPage = ({ data }) => {
                       </div>
                     </div>
 
-                    <div className="col-12 col-md-6 col-xl-4 offset-md-3 offset-xl-0">
+                    <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-3 offset-xl-0">
                       <div className="box box-7">
                         <h5 className="box-name">WordPress</h5>
                         <div className="image-outer image-outer-7">

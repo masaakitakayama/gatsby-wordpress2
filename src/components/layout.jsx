@@ -11,7 +11,7 @@ import Header from "./header"
 import Footer from "./footer"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,8 +23,19 @@ const Layout = ({ children }) => {
   `)
 
   const [theme, setTheme] = useState('light');
+  const [loading, setLoading] = useState(true);
+  const [hasVisitedBefore, setHasVisitedBefore] = useState(false);
 
   useEffect(() => {
+    // Check if user has visited before
+    const visited = sessionStorage.getItem('hasVisited');
+    setHasVisitedBefore(!!visited);
+
+    // Set visited flag
+    if (!visited) {
+      sessionStorage.setItem('hasVisited', 'true');
+    }
+
     // Check for saved theme preference or system preference
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -36,6 +47,13 @@ const Layout = ({ children }) => {
       setTheme('dark');
       document.documentElement.setAttribute('data-theme', 'dark');
     }
+
+    // Hide loader after animation completes
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const toggleTheme = () => {
@@ -45,8 +63,18 @@ const Layout = ({ children }) => {
     localStorage.setItem('theme', newTheme);
   };
 
+  // Check if current page is the main page
+  const isMainPage = location?.pathname === '/';
+  // Show loader only on main page and first visit
+  const showLoader = isMainPage && !hasVisitedBefore;
+
   return (
     <>
+      {showLoader && (
+        <div className={`battery-loader ${!loading ? 'hide' : ''}`}>
+          <div className="battery"></div>
+        </div>
+      )}
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{

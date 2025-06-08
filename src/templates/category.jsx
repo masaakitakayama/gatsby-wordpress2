@@ -35,6 +35,11 @@ const CategoryTemplate = ({ data }) => {
             </div>
           ))}
         </div>
+        <div className="back-link">
+              <Link to="/" className="button button--primary">
+                ホームに戻る
+              </Link>
+        </div>
       </div>
     </Layout>
   );

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import '../css/header.css';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { Modal } from 'react-bootstrap';
 import Logo from './Logo';
+import PropTypes from 'prop-types';
 
-const Header = () => {
+const Header = ({ siteTitle }) => {
   const [showModal, setShowModal] = useState(false);
   const [isWorksOpen, setIsWorksOpen] = useState(false);
   const [isWorkListOpen, setIsWorkListOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleModalOpen = () => setShowModal(true);
   const handleModalClose = () => {
@@ -23,6 +25,21 @@ const Header = () => {
   const handleAnchorClick = () => {
     handleModalClose();
   };
+
+  // スクロール位置を監視
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 50) { // 50px以上スクロールしたら
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigationLinks = [
     { to: "/", text: "Home" },
@@ -56,7 +73,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header__body">
         <h1 className="header__body-logo-outer">
           <Link to="/" className="header__body-logo-link">
@@ -202,6 +219,14 @@ const Header = () => {
       </Modal>
     </header>
   );
+};
+
+Header.propTypes = {
+  siteTitle: PropTypes.string,
+};
+
+Header.defaultProps = {
+  siteTitle: ``,
 };
 
 export default Header;

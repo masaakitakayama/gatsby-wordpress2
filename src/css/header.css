@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   position: relative;
 }
 
@@ -86,7 +86,7 @@
 
 @media (max-width: 1200px) {
   .header__body {
-    padding: 1rem;
+    padding: 0 1rem;
   }
 }
 
@@ -163,6 +163,10 @@
   z-index: 99;
 }
 
+.header .display-menu .dropdown li{
+  margin: 0;
+}
+
 .header .d-flex {
   margin: 0;
   padding: 0; /* ul 要素のデフォルトパディングをリセット */
@@ -195,7 +199,7 @@
 .header .display-menu .drop-item:focus,
 .header .display-menu .dropdown-item:hover,
 .header .display-menu .dropdown-item:focus {
-  color: var(--accent-color);
+  color: skyblue;
   outline: none;
   transition: all 0.4s;
 }

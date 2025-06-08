@@ -1,5 +1,5 @@
 .category-container{
-  margin-top: 6rem;
+  margin-top: 8rem;
 }
 
 .container .post-categories{
@@ -14,7 +14,7 @@
   font-weight: 700;
   text-align: center;
   display: block;
-  margin:5rem auto 2rem;
+  margin:0 auto 1rem;
   transform: skewX(-10deg);
 }
 @media (min-width: 1200px) {
@@ -40,7 +40,7 @@
 	aspect-ratio:16/9;
 	background-color: rgba(12, 95, 198, 0.1);
 	display: block;
-	margin-top:3rem;
+	margin-top:2rem;
 }
 
 .container .thumbnail__title-box h4{

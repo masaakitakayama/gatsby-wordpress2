@@ -1,6 +1,6 @@
 // src/templates/post.js
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql , Link } from "gatsby";
 import single from "../css/single.css";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
@@ -16,6 +16,11 @@ const Post = ({ data }) => {
           <h2 className="section-title">作品詳細</h2>
           <h3>{post.title}</h3>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="back-link">
+              <Link to="/" className="button button--primary">
+                ホームに戻る
+              </Link>
+            </div>
         </div>
       </section>
     </Layout>
