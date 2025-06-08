@@ -92,7 +92,7 @@ const AboutDetaill = () => {
 
             <div className="back-link">
               <Link to="/" className="button button--primary">
-                Back to Home
+                ホームに戻る
               </Link>
             </div>
           </div>

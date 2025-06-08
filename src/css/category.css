@@ -1,3 +1,7 @@
+.category-container{
+  margin-top: 6rem;
+}
+
 .container .post-categories{
 	width: fit-content;
 	padding-left: 0;
@@ -60,4 +64,45 @@
 
 .container p{
 	margin-top:1rem;
+}
+
+.category-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 100%;
+  transform: skewX(-10deg);
+}
+
+.category-title::first-letter {
+  background: linear-gradient(45deg, #1466C7, #0C5FC6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 3rem;
+  display: inline-block;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .category-title {
+    font-size: 2rem;
+  }
+
+  .category-title::first-letter {
+    font-size: 2.5rem;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .category-title::first-letter {
+    background: linear-gradient(45deg, #0C5FC6, #1466C7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }

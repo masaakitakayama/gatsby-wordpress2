@@ -1,45 +1,59 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import '../css/header.css';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
-import { Modal } from 'react-bootstrap'; // Button は使用していません
+import { Modal } from 'react-bootstrap';
 import Logo from './Logo';
 
 const Header = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const isScrolling = useRef(false);
-  const scrollTimeout = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const [isWorksOpen, setIsWorksOpen] = useState(false);
+  const [isWorkListOpen, setIsWorkListOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!isScrolling.current) {
-        isScrolling.current = true;
-        if (show) {
-          handleClose();
-        }
-      }
+  const handleModalOpen = () => setShowModal(true);
+  const handleModalClose = () => {
+    setShowModal(false);
+    setIsWorksOpen(false);
+    setIsWorkListOpen(false);
+  };
 
-      clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(() => {
-        isScrolling.current = false;
-      }, 100);
-    };
-
-    if (show) {
-      window.addEventListener('scroll', handleScroll);
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout.current);
-    };
-  }, [show]);
+  const toggleWorks = () => setIsWorksOpen(!isWorksOpen);
+  const toggleWorkList = () => setIsWorkListOpen(!isWorkListOpen);
 
   const handleAnchorClick = () => {
-    handleClose();
+    handleModalClose();
   };
+
+  const navigationLinks = [
+    { to: "/", text: "Home" },
+    { to: "/#About", text: "About(省略)" },
+    { to: "/about_detaill", text: "About(詳細)" },
+    {
+      text: "Works",
+      isDropdown: true,
+      items: [
+        { to: '/#landingpages', text: 'Landing' },
+        { to: '/#wordpress', text: 'Wordpress' },
+        { to: '/#banners', text: 'Banners' },
+        { to: '/#photos', text: 'Photos' },
+        { to: '/#videos', text: 'Videos' },
+        { to: '/#others', text: 'Others' }
+      ]
+    },
+    {
+      text: "Works(一覧)",
+      isDropdown: true,
+      items: [
+        { to: '/category/landingpages/', text: 'Landing' },
+        { to: '/category/wordpress/', text: 'Wordpress' },
+        { to: '/category/banners/', text: 'Banners' },
+        { to: '/category/photos/', text: 'Photos' },
+        { to: '/category/videos/', text: 'Videos' },
+        { to: '/category/others/', text: 'Others' }
+      ]
+    },
+    { to: "/#Skills", text: "Skills" }
+  ];
 
   return (
     <header className="header">
@@ -52,110 +66,137 @@ const Header = () => {
         <button
           type="button"
           className="d-xl-none modal-1 btn"
-          onClick={handleShow}
           aria-label="ハンバーガーメニュー"
+          onClick={handleModalOpen}
         >
           <span className="bar"></span>
         </button>
         <div className='display-menu'>
           <div className="dropdown d-none d-xl-block">
             <ul className='d-flex'>
-              <li><Link to="/" className="dropdown-item">Home</Link></li>
-              <li><Link to="/#about" className="dropdown-item">About(省略)</Link></li>
-              <li><Link to="/about_detaill" className="dropdown-item">About(詳細)</Link></li>
-              <li className="nav-item dropdown">
-                <button
-                  className="drop-item btn dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Works
-                </button>
-                <ul className="dropdown-menu">
-                  <li className="dropdown-item dropdown-item--fcb"><AnchorLink to='/#landingpages' onAnchorLinkClick={handleAnchorClick} stripHash>Landingpages</AnchorLink></li>
-                  <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#wordpress" onAnchorLinkClick={handleAnchorClick} stripHash>Wordpress</AnchorLink></li>
-                  <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#banners" onAnchorLinkClick={handleAnchorClick} stripHash>Banners</AnchorLink></li>
-                  <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#photos" onAnchorLinkClick={handleAnchorClick} stripHash>photos</AnchorLink></li>
-                  <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#videos" onAnchorLinkClick={handleAnchorClick} stripHash>Videos</AnchorLink></li>
-                  <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#others" onAnchorLinkClick={handleAnchorClick} stripHash>Others</AnchorLink></li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <button
-                  className="drop-item btn dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Works(一覧)
-                </button>
-                <ul className="dropdown-menu">
-                  <li><Link to="/category/landingpages" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Landing</Link></li>
-                  <li><Link to="/category/wordpress" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Wordpress</Link></li>
-                  <li><Link to="/category/banners" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Banners</Link></li>
-                  <li><Link to="/category/photos" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Photos</Link></li>
-                  <li><Link to="/category/videos" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Videos</Link></li>
-                  <li><Link to="/category/others" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Others</Link></li>
-                </ul>
-              </li>
-              <li><Link to="/#Skills" className="dropdown-item">Skills</Link></li>
+              {navigationLinks.map((link, index) => (
+                <li key={index}>
+                  {link.isDropdown ? (
+                    <>
+                      <button
+                        className="drop-item btn dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        {link.text}
+                      </button>
+                      <ul className="dropdown-menu">
+                        {link.items.map((item, idx) => (
+                          <li key={idx} className="dropdown-item dropdown-item--fcb">
+                            {item.to.startsWith('/#') ? (
+                              <AnchorLink
+                                to={item.to}
+                                stripHash
+                                onAnchorLinkClick={handleAnchorClick}
+                              >
+                                {item.text}
+                              </AnchorLink>
+                            ) : (
+                              <Link to={item.to}>
+                                {item.text}
+                              </Link>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    link.to.startsWith('/#') ? (
+                      <AnchorLink
+                        to={link.to}
+                        className="dropdown-item"
+                        stripHash
+                        onAnchorLinkClick={handleAnchorClick}
+                      >
+                        {link.text}
+                      </AnchorLink>
+                    ) : (
+                      <Link to={link.to} className="dropdown-item">
+                        {link.text}
+                      </Link>
+                    )
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
 
-      <Modal show={show} onHide={handleClose} className="modal">
-        <Modal.Header>
-          <Link to="/" className="modal_logo-link">
-            <h1 className='modal_logo_outer'>
+      <Modal show={showModal} onHide={handleModalClose} className="mobile-menu">
+        <Modal.Header closeButton>
+          <div className="modal_logo_outer">
+            <Link to="/" className="modal_logo-link" onClick={handleModalClose}>
               <Logo className="modal_logo_item" />
-            </h1>
-          </Link>
-          <button type="button" className="btn-close" onClick={handleClose}></button>
+            </Link>
+          </div>
         </Modal.Header>
         <Modal.Body>
-          <ul className="link-group">
-            <li><Link className='dropdown-item' to="/" onClick={handleClose}>Home</Link></li>
-            <li><AnchorLink className='dropdown-item' to="/#About" onClick={handleClose}>About(省略)</AnchorLink></li>
-            <li><Link className='dropdown-item' to="/about_detaill" onClick={handleClose}>About(詳細)</Link></li>
-            <li className="nav-item dropdown">
-              <div
-                className="dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                onClick={(e) => e.preventDefault()}
-              >
-                Works
-              </div>
-              <ul className="dropdown-menu">
-                <li className="dropdown-item dropdown-item--fcb"><AnchorLink to='/#landingpages' onAnchorLinkClick={handleAnchorClick} stripHash>Landingpages</AnchorLink></li>
-                <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#wordpress" onAnchorLinkClick={handleAnchorClick} stripHash>Wordpress</AnchorLink></li>
-                <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#banners" onAnchorLinkClick={handleAnchorClick} stripHash>Banners</AnchorLink></li>
-                <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#photos" onAnchorLinkClick={handleAnchorClick} stripHash>photos</AnchorLink></li>
-                <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#videos" onAnchorLinkClick={handleAnchorClick} stripHash>Videos</AnchorLink></li>
-                <li className="dropdown-item dropdown-item--fcb"><AnchorLink to="/#others" onAnchorLinkClick={handleAnchorClick} stripHash>Others</AnchorLink></li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <div
-                className="dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                onClick={(e) => e.preventDefault()}
-              >
-                Works(一覧)
-              </div>
-              <ul className="dropdown-menu">
-                <li><Link to="/category/landingpages" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Landing</Link></li>
-                <li><Link to="/category/wordpress" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Wordpress</Link></li>
-                <li><Link to="/category/banners" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Banners</Link></li>
-                <li><Link to="/category/photos" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Photos</Link></li>
-                <li><Link to="/category/videos" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Videos</Link></li>
-                <li><Link to="/category/others" className="dropdown-item dropdown-item--fcb" onClick={handleClose}>Others</Link></li>
-              </ul>
-            </li>
-            <li><Link to="/#Skills" className="dropdown-item" onClick={handleClose}>Skills</Link></li>
+          <ul className="list-unstyled">
+            {navigationLinks.map((link, index) => (
+              <li key={index}>
+                {link.isDropdown ? (
+                  <>
+                    <button
+                      className="dropdown-toggle"
+                      onClick={link.text === "Works" ? toggleWorks : toggleWorkList}
+                      aria-expanded={link.text === "Works" ? isWorksOpen : isWorkListOpen}
+                    >
+                      {link.text}
+                    </button>
+                    <ul className={`dropdown-menu ${
+                      link.text === "Works" ? (isWorksOpen ? 'show' : '') : (isWorkListOpen ? 'show' : '')
+                    }`}>
+                      {link.items.map((item, idx) => (
+                        <li key={idx}>
+                          {item.to.startsWith('/#') ? (
+                            <AnchorLink
+                              to={item.to}
+                              stripHash
+                              onAnchorLinkClick={handleAnchorClick}
+                            >
+                              {item.text}
+                            </AnchorLink>
+                          ) : (
+                            <Link
+                              to={item.to}
+                              onClick={handleModalClose}
+                            >
+                              {item.text}
+                            </Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  link.to.startsWith('/#') ? (
+                    <AnchorLink
+                      to={link.to}
+                      className="dropdown-item"
+                      stripHash
+                      onAnchorLinkClick={handleAnchorClick}
+                    >
+                      {link.text}
+                    </AnchorLink>
+                  ) : (
+                    <Link
+                      to={link.to}
+                      className="dropdown-item"
+                      onClick={handleModalClose}
+                    >
+                      {link.text}
+                    </Link>
+                  )
+                )}
+              </li>
+            ))}
           </ul>
         </Modal.Body>
       </Modal>

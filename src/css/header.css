@@ -1,30 +1,100 @@
 /* ヘッダー全体 */
 .header {
-  width: 100%;
-  height: 80px;
-  background-color: var(--header-bg);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--header-bg);
+  border-bottom: var(--header-border);
+}
+
+.header__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.header__body-logo-outer {
+  margin: 0;
+  position: relative;
+}
+
+.header__body-logo-link {
+  display: block;
+  text-decoration: none;
+}
+
+.header__body-logo-item {
+  margin-bottom: 0;
+  filter: brightness(1) drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+  background: linear-gradient(45deg, #1466C7, #0C5FC6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.display-menu {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-menu {
+  background-color: var(--card-bg);
+  border: var(--glass-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.modal-1 {
+  display: flex;
+  flex-direction: column;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  margin: 3px 0;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 1200px) {
+  .header__body {
+    padding: 1rem;
+  }
 }
 
 /* ヘッダーロゴ */
 .header__body-logo-link {
   display: block;
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
-  transition: all 1s;
-  width: 100%;
-  max-width: 150px;
-}
-
-.header__body-logo-outer {
-  margin: 0;
-  line-height: 1;
+  text-decoration: none;
+  width: 150px;
 }
 
 .header__body-logo-item {
@@ -37,13 +107,13 @@
 
 @media (min-width: 768px) {
   .header__body-logo-link {
-    max-width: 180px;
+    width: 180px;
   }
 }
 
 @media (min-width: 992px) {
   .header__body-logo-link {
-    max-width: 200px;
+    width: 200px;
   }
 }
 
@@ -157,13 +227,15 @@
   margin-bottom: 0;
 }
 
-.modal_logo_outer{
+.modal_logo_outer {
   width: 40%;
   margin-bottom: 0;
 }
 
-.modal_logo_item{
+.modal_logo_item {
   margin-bottom: 0;
+  filter: brightness(1) drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+  color: white;
 }
 
 .modal .modal-body{
@@ -186,9 +258,9 @@
 .modal .modal-header {
   border: none;
   padding: 15px 0 0 0;
-  display: flex; /* ロゴと閉じるボタンを横並びにする */
-  justify-content: space-between; /* 両端揃え */
-  align-items: center; /* 垂直方向中央揃え */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal .logo-link {
@@ -215,6 +287,67 @@
   margin-top: 2rem;
 }
 
+.modal-body .list-unstyled {
+  padding: 0;
+}
+
+.modal-body .dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0.5rem 0;
+  font-size: 1.25rem;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+.modal-body .dropdown-toggle::after {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modal-body .dropdown-menu {
+  background-color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.modal-body .dropdown-menu.show {
+  display: block;
+}
+
+.modal-body .dropdown-menu a {
+  color: #6BB7D1;
+  text-decoration: none;
+  padding: 0 1rem;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.modal-body .dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+}
+
+.modal-body .dropdown-item {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-size: 1.25rem;
+  display: block;
+}
+
+.modal-body .dropdown-item:hover {
+  background: none;
+  opacity: 0.8;
+}
+
 .modal-dialog .dropdown .dropdown-menu {
   padding: 1.5rem 1rem;
   margin: 0;
@@ -228,4 +361,19 @@
   margin: 1.5rem 0 0 0;
   display: block;
   text-decoration: none; /* リンクの下線を削除 */
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .header__body-logo-item {
+    filter: brightness(1.2) drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+    background: linear-gradient(45deg, #0C5FC6, #1466C7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .modal_logo_item {
+    filter: brightness(1.2) drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+  }
 }

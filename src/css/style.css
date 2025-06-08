@@ -53,6 +53,35 @@ Tested up to: 6.4.3
   --header-border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Additional dark mode text color overrides */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .text,
+[data-theme="dark"] .name,
+[data-theme="dark"] .category-title,
+[data-theme="dark"] .category-text,
+[data-theme="dark"] .sub-title,
+[data-theme="dark"] .main-title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .main-title::first-letter {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .sub-title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -286,10 +315,13 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.2em;
 }
 
+#About{
+  scroll-margin-top: 100px;
+}
+
 /* About section specific styles */
 .about {
   padding: 0rem 0 5rem;
-  scroll-margin-top: 60px;
 }
 
 .about .button {
@@ -333,21 +365,8 @@ h1, h2, h3, h4, h5, h6 {
 section {
   position: relative;
   overflow: hidden;
+  margin-bottom:3rem;
   scroll-margin-top: 80px;
-}
-
-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg,
-    rgba(5, 117, 230, 0.05),
-    rgba(2, 27, 121, 0.05)
-  );
-  z-index: -1;
 }
 
 section:last-child {
@@ -424,8 +443,12 @@ section:last-child {
     font-size: 2rem;
   }
 
-  section {
-    padding: 3rem 0;
+  section{
+    margin-bottom: 3rem;
+  }
+
+  section:last-child{
+    margin-bottom: 0;
   }
 
   .card {
@@ -502,37 +525,124 @@ section:first-child{
 }
 
 .firstview {
-  aspect-ratio: 2/3;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f8ff;
+}
+
+.firstview__animation {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../static/first-view-bg.jpg);
-  background-size: cover;
-  display: block;
-  position: relative;
 }
+
+.firstview__wave {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift linear infinite;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.wave1 {
+  background: rgba(107, 183, 209, 0.25);
+  animation-duration: 24s;
+}
+
+.wave2 {
+  background: rgba(20, 102, 199, 0.2);
+  animation-duration: 18s;
+}
+
+.wave3 {
+  background: rgba(0, 149, 255, 0.15);
+  animation-duration: 12s;
+}
+
+.firstview-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: auto;
+  z-index: 10;
+}
+
+.firstview .logo-link {
+  width: fit-content;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  scale: 1.4;
+  filter: brightness(1.4);
+}
+
+
+
+@keyframes drift {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .firstview {
+  background-color: #1a1a2e;
+}
+
+[data-theme="dark"] .wave1 {
+  background: rgba(107, 183, 209, 0.2);
+  mix-blend-mode: screen;
+}
+
+[data-theme="dark"] .wave2 {
+  background: rgba(20, 102, 199, 0.15);
+  mix-blend-mode: screen;
+}
+
+[data-theme="dark"] .wave3 {
+  background: rgba(0, 149, 255, 0.12);
+  mix-blend-mode: screen;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .firstview-logo {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .firstview-logo {
+    width: 40%;
+  }
+}
+
+.main-text, .subtext {
+  text-align: center;
+  dominant-baseline: middle;
+}
+
 @media (min-width: 768px) {
   .firstview {
     aspect-ratio: 1/1;
   }
 }
+
 @media (min-width: 1200px) {
   .firstview {
     aspect-ratio: 16/8;
-  }
-}
-
-.firstview-logo{
-  position: absolute;
-  width:50%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-
-@media (min-width:1200px) {
-  .firstview-logo{
-    width:30%;
   }
 }
 
@@ -1087,4 +1197,74 @@ html {
   .about-detaill section {
     padding: 3rem;
   }
+}
+
+/* Language Switch Button */
+.language-switch {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.language-switch:hover {
+  transform: scale(1.1);
+}
+
+[data-theme="dark"] .language-switch {
+  background: var(--secondary-gradient);
+  color: white;
+}
+
+.logo-link {
+  width: fit-content;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: brightness(1.2);
+  transition: filter 0.3s ease;
+}
+
+/* firstviewのロゴ特別スタイル */
+.firstview .logo-link {
+  width: fit-content;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  scale: 1.4;
+  filter: brightness(1.4);
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .logo-link {
+  filter: brightness(1.3);
+}
+
+[data-theme="dark"] .firstview .logo-link {
+  filter: brightness(1.5);
+}
+
+/* ヘッダーのロゴ特別スタイル */
+.header .logo-link {
+  scale: 0.8;
+  transition: all 0.3s ease;
+}
+
+.header .logo-link:hover {
+  filter: brightness(1.3);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .header .logo-link:hover {
+  filter: brightness(1.6);
 }

@@ -8,10 +8,13 @@ import Layout from "../components/layout";
 const CategoryTemplate = ({ data }) => {
   const category = data.wpgraphql.category;
 
+  // カテゴリー名の最初の文字を大文字に
+  const categoryName = category.name.charAt(0).toUpperCase() + category.name.slice(1);
+
   return (
     <Layout>
-      <div className="container mt-5">
-        <h1 className="text-center mb-4">{category.name}</h1>
+      <div className="container category-container">
+        <h1 className="category-title text-center mb-5">{categoryName}</h1>
         <div className="row g-4">
           {category.posts.nodes.map(post => (
             <div className="col-12 col-md-6 col-xl-4" key={post.id}>

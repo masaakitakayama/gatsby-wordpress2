@@ -9,6 +9,7 @@ import SkillsAnimation from '../my_js/skills';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
+import Logo from "../components/Logo";
 
 const IndexPage = ({ data }) => {
   const wpgraphql = data?.wpgraphql;
@@ -17,10 +18,29 @@ const IndexPage = ({ data }) => {
   const aboutTitleRef = useRef(null);
   const skillsTitleRef = useRef(null);
   const categoryTitleRefs = useRef({});
+  const firstviewRef = useRef(null);
+  const logoRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Firstviewアニメーション
+    if (firstviewRef.current) {
+      const waves = firstviewRef.current.querySelectorAll('.firstview__wave');
+
+      // 継続的な波のアニメーションのみ維持
+      gsap.to(waves, {
+        rotation: "+=360",
+        duration: waves.length * 8,
+        repeat: -1,
+        ease: "none",
+        stagger: {
+          each: 8,
+          repeat: -1
+        }
+      });
     }
   }, []);
 
@@ -229,7 +249,15 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <section>
-        <div className="firstview">
+        <div className="firstview" ref={firstviewRef}>
+          <div className="firstview__animation">
+            <div className="firstview__wave wave1"></div>
+            <div className="firstview__wave wave2"></div>
+            <div className="firstview__wave wave3"></div>
+          </div>
+          <div className="firstview-logo">
+            <Logo />
+          </div>
         </div>
       </section>
 
