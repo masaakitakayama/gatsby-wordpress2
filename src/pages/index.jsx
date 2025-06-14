@@ -9,7 +9,7 @@ import SkillsAnimation from '../my_js/skills';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
-import Logo from "../components/Logo";
+import Logo2 from "../components/Logo2";
 
 const IndexPage = ({ data }) => {
   const wpgraphql = data?.wpgraphql;
@@ -255,8 +255,8 @@ const IndexPage = ({ data }) => {
             <div className="firstview__wave wave2"></div>
             <div className="firstview__wave wave3"></div>
           </div>
-          <div className="firstview-logo">
-            <Logo />
+          <div className="firstview-logo-outer">
+            <Logo2 className="firstview-logo" />
           </div>
         </div>
       </section>

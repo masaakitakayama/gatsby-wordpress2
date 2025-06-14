@@ -1,12 +1,13 @@
 /* ヘッダー全体 */
 .header {
+  padding: 0 0 0.5rem;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   background-color: var(--header-bg);
-  border-bottom: var(--header-border);
+  border-bottom: none;
 }
 
 .header__body {
@@ -18,16 +19,34 @@
 }
 
 .header__body-logo-outer {
+  width: 50%;
   margin: 0;
   position: relative;
+  top: -0.25rem;
 }
 
-.header__body-logo-link {
-  display: block;
-  text-decoration: none;
+@media (min-width:568px) {
+ .header__body-logo-outer {
+  width: 40%;
+  margin: 0;
+  position: relative;
+  top: -0.25rem;
 }
+
+}
+@media (min-width:992px) {
+ .header__body-logo-outer {
+  width: 30%;
+  margin: 0;
+  position: relative;
+  top: -0.25rem;
+}
+}
+
+
 
 .header__body-logo-item {
+  width: fit-content;
   margin-bottom: 0;
   filter: brightness(1) drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
   background: linear-gradient(45deg, #1466C7, #0C5FC6);
@@ -94,7 +113,7 @@
 .header__body-logo-link {
   display: block;
   text-decoration: none;
-  width: 150px;
+  width: fit-content;
 }
 
 .header__body-logo-item {

@@ -76,7 +76,7 @@ const Header = ({ siteTitle }) => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header__body">
         <h1 className="header__body-logo-outer">
-          <Link to="/" className="header__body-logo-link">
+          <Link to="/">
             <Logo className="header__body-logo-item" />
           </Link>
         </h1>

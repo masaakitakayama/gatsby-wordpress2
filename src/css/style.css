@@ -298,8 +298,17 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   margin-left: 8px;
   width: 20px;
-  height: 20px;
+  height: 10px;
   transition: transform 0.3s ease;
+}
+
+.arrow::before {
+  content: '→';
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  font-size: 1.2em;
 }
 
 .button:hover .arrow,
@@ -307,22 +316,10 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(5px);
 }
 
-.arrow::before {
-  content: '→';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.2em;
-}
-
 #About{
   scroll-margin-top: 100px;
 }
 
-/* About section specific styles */
-.about {
-}
 
 .about .button {
   display: block !important;
@@ -561,24 +558,35 @@ section:first-child{
   animation-duration: 12s;
 }
 
-.firstview-logo {
+.firstview-logo-outer {
+  svg{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
-  height: auto;
-  z-index: 10;
-}
-
-.firstview .logo-link {
-  width: fit-content;
-  height: auto;
   display: block;
   margin: 0 auto;
-  scale: 1.4;
-  filter: brightness(1.4);
+  height: auto;
+  z-index: 10;
+  }
 }
+
+/* @media (min-width:768px) {
+  .firstview-logo-outer {
+    svg{
+      width: 300px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      margin: 0 auto;
+      height: auto;
+      z-index: 10;
+    }
+  }
+
+} */
 
 .works-title {
   color:#333;
@@ -995,6 +1003,31 @@ section:first-child{
     font-size: 2rem;
   }
 }
+
+.skills .text {
+  height: 120px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1.5rem 0 0 0;
+  color: var(--text-primary);
+}
+
+@media (min-width:768px) {
+  .skills .text{
+    margin-bottom: 1rem;
+  }
+
+  .skills .box-7 .text{
+    height: auto;
+  }
+}
+
+@media (min-width:1200px) {
+
+}
+
+
+
 .skills .image-outer {
   margin: 4rem 0 0 0;
   position: relative;
@@ -1092,12 +1125,6 @@ section:first-child{
   100% {
     transform: translateX(-50%) rotate(70deg);
   }
-}
-.skills .text {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 1.5rem 0 1rem 0;
-  color: var(--text-primary);
 }
 
 .copy-right {
@@ -1234,24 +1261,6 @@ html {
   .about-detaill section {
     padding: 3rem;
   }
-}
-.logo-link {
-  width: fit-content;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  filter: brightness(1.2);
-  transition: filter 0.3s ease;
-}
-
-/* firstviewのロゴ特別スタイル */
-.firstview .logo-link {
-  width: fit-content;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  scale: 1.4;
-  filter: brightness(1.4);
 }
 
 /* ダークモード対応 */
