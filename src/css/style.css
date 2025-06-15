@@ -82,6 +82,10 @@ Tested up to: 6.4.3
   -webkit-text-fill-color: #ffffff;
 }
 
+[data-theme="dark"] .featuredImage {
+  filter: drop-shadow(5px 5px 10px #ffffff33);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -805,7 +809,8 @@ section:first-child{
   height: 100%;
   object-fit: contain;
   display: block;
-  margin: 0 auto;
+  margin: 1.5rem auto 0;
+
 }
 
 .item-link {

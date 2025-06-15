@@ -61,26 +61,10 @@ img{
 	padding:0 0 2rem 0;
 }
 
-
-.single .gatsby-image-wrapper{
-	aspect-ratio:auto;
-	margin-top: 1rem;
-}
-
-.single .gatsby-image-wrapper img{
-	width:100%;
-	height: auto;
+.single .wp-block-image img{
+	max-width: 1000px;
 	display: block;
-	margin:0 auto;
-}
-
-@media (min-width:1200px) {
-	.single .wp-block-group img{
-		width:60%;
-		height: auto;
-		display: block;
-		margin:0 auto;
-	}
+	margin: 0 auto;
 }
 
 
