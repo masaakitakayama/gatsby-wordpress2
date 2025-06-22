@@ -36,16 +36,16 @@ const Layout = ({ children, location }) => {
       sessionStorage.setItem('hasVisited', 'true');
     }
 
-    // Check for saved theme preference or system preference
+    // Check for saved theme preference only
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme) {
       setTheme(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (prefersDark) {
-      setTheme('dark');
-      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      // Default to light theme if no saved preference
+      setTheme('light');
+      document.documentElement.setAttribute('data-theme', 'light');
     }
 
     // Hide loader after animation completes
