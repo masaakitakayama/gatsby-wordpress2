@@ -10,6 +10,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
 import Logo2 from "../components/Logo2";
+import AnimatedSvg from '../components/AnimatedSvg';
+import Logo from "../components/Logo"
 
 const IndexPage = ({ data }) => {
   const wpgraphql = data?.wpgraphql;
@@ -272,18 +274,19 @@ const IndexPage = ({ data }) => {
               scrollTriggerProps={{ start: "top 70%", end: "bottom 30%" }}
               once={true}
             />
-            <div className="row align-items-center">
-              <div className="col-12 col-md-8 col-xl-3 offset-md-2 offset-xl-0">
+            <div className="row justify-content-center">
+              <div className="col-12 col-sm-8 col-md-6 col-lg-4">
                 <div className="image-outer">
+                  <AnimatedSvg />
                 </div>
               </div>
-              <div className="col-12 col-xl-9">
+              <div className="col-8 col-md-6 col-lg-8 align-self-center">
                 <span className="name">M.T</span>
                 <p className="text">
-
+                  1995年生まれ 現在は障害者雇用にて社内のWEBサポート業務に従事。
                 </p>
               </div>
-            </div>
+              </div>
             <Link to="/about_detaill" className="button button--primary">
               自己紹介詳細へ
               <span className="arrow"></span>
@@ -346,33 +349,48 @@ const IndexPage = ({ data }) => {
                   <div className="row">
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-1">
-                        <h5 className="box-name">HTML・CSS/Sass</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#6BB7D1" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">HTML</h3>
                         <div className="image-outer image-outer-1">
-                          <span className="persent persent-1">80%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-1" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">80%</text>
+                          </svg>
                         </div>
                         <p className="text">どの端末から見ても綺麗に見る事が出来るようなレスポンシブデザインが可能です。BEM記法についての知識があり、即戦力として仕事に取り組む事が出来ます。</p>
                       </div>
                     </div>
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-2">
-                        <h5 className="box-name">Adobe XD</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#FBBFA4" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">CSS</h3>
                         <div className="image-outer image-outer-2">
-                          <span className="persent persent-2">90%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle needle-2" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-2" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">90%</text>
+                          </svg>
                         </div>
                         <p className="text">ウェブサイト、バナー等様々な物をXDで効率的に作成する事が出来ます。グリッドを使って規則性を意識したデザインを可能にします。それによりコーディングをより早く、修正を簡単に出来ます。</p>
                       </div>
                     </div>
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-3">
-                        <h5 className="box-name">photoshop</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#005E91" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">Javascript</h3>
                         <div className="image-outer image-outer-3">
-                          <span className="persent persent-3">70%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle needle-3" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-3" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">70%</text>
+                          </svg>
                         </div>
                         <p className="text">写真のレタッチ、バナー作成、gif動画の作成等様々な編集が出来ます。基本的な操作は問題なく出来ます。光の操り方や合成等も行う事が可能です。</p>
                       </div>
@@ -380,33 +398,48 @@ const IndexPage = ({ data }) => {
 
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-4">
-                        <h5 className="box-name">Javascript/jQuery</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#EDC201" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">WordPress</h3>
                         <div className="image-outer image-outer-4">
-                          <span className="persent persent-4">70%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle needle-4" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-4" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">70%</text>
+                          </svg>
                         </div>
                         <p className="text">スライダーの実装やクリックで画像が切り替わる機能等の経験をしました。今後はよりUI、UXを意識したサイトを作成していきたいので、技術を高めていきたいです。</p>
                       </div>
                     </div>
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-5">
-                        <h5 className="box-name">premier pro</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#4A508E" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">Photoshop</h3>
                         <div className="image-outer image-outer-5">
-                          <span className="persent persent-5">70%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle needle-5" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-5" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">70%</text>
+                          </svg>
                         </div>
                         <p className="text">不動産、インタビュー動画、自分で構成を考えた動画制作を経験しました。カット、テロップ、音楽の入れ方等基本的な操作は問題なく出来ます。</p>
                       </div>
                     </div>
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-0">
                       <div className="box box-6">
-                        <h5 className="box-name">Aftereffect</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#4A508E" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">Illustrator</h3>
                         <div className="image-outer image-outer-6">
-                          <span className="persent persent-6">70%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle needle-6" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-6" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">70%</text>
+                          </svg>
                         </div>
                         <p className="text">自分で構成を考えたwebCMを作成出来ます。基本的な操作は問題なく出来ます。場面の切り替わりを意識して動画制作を行う事が出来、視聴者が楽しめる工夫が出来ます。</p>
                       </div>
@@ -414,11 +447,16 @@ const IndexPage = ({ data }) => {
 
                     <div className="col-12 col-sm-8 col-md-6 col-xl-4 offset-sm-2 offset-md-3 offset-xl-0">
                       <div className="box box-7">
-                        <h5 className="box-name">WordPress</h5>
+                        <svg className="border-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                          <rect x="0" y="0" width="100" height="100" fill="none" stroke="#207195" stroke-width="1" stroke-dasharray="400" stroke-dashoffset="400" className="border-path"/>
+                        </svg>
+                        <h3 className="box-name">Premiere Pro</h3>
                         <div className="image-outer image-outer-7">
-                          <span className="persent persent-7">70%</span>
-                          <img src={circle} alt="" className="circle" />
-                          <img src={needle} alt="" className="needle needle-7" />
+                          <img className="image" src={circle} alt="スキルメーター" />
+                          <img className="needle" src={needle} alt="スキルメーター針" />
+                          <svg className="persent persent-7" viewBox="0 0 100 40">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">70%</text>
+                          </svg>
                         </div>
                         <p className="text">オリジナルテンプレートの作成、テーマチェック、コンタクトフォーム７を使用したお問い合わせフォームの設置が出来ます。</p>
                       </div>

@@ -26,7 +26,7 @@ const AboutDetaill = () => {
                     <dd>横浜</dd>
 
                     <dt>生年月日</dt>
-                    <dd>1995年7月16日 28歳</dd>
+                    <dd>1995年生まれ</dd>
                   </dl>
                 </div>
               </div>
@@ -34,7 +34,7 @@ const AboutDetaill = () => {
               <div className="career-section">
                 <h2>経歴</h2>
                 <p>
-                  高校卒業後、公務員試験対策の専門学校に通い、その後約7年間学校用務員として勤務。体調を崩し退職。すぐに社会復帰をせず、まずはスキルを身につけたいという思いから、現在は就労移行支援に通い、WEB制作を軸に動画制作等幅広く学習している。
+                  高校卒業後、公務員試験対策の専門学校に通い、その後約7年間学校用務員として勤務。体調を崩し退職し、就労移行支援にてWEB制作や動画制作を学ぶ。現在は障害者雇用にて社内のWEB関連の業務サポートに従事している。
                 </p>
               </div>
 
@@ -50,14 +50,14 @@ const AboutDetaill = () => {
 
               <div className="career-plan-section">
                 <h2>キャリアプラン</h2>
-                <div className="career-goals">
-                  <div className="career-goal">
+                <div className="row career-goals">
+                  <div className="col-12 col-sm-5 col-lg-3 offset-sm-1 offset-lg-1 career-goal">
                     <h3>実際の仕事を通してスキルを高め会社に貢献する</h3>
                   </div>
-                  <div className="career-goal">
+                  <div className="col-12 col-sm-5 col-lg-3 career-goal">
                     <h3>webも動画も出来るマルチクリエイターになる</h3>
                   </div>
-                  <div className="career-goal">
+                  <div className="col-12 col-sm-5 col-lg-3  career-goal">
                     <h3>技術面だけでなく、ディレクションも出来るようになる</h3>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ const AboutDetaill = () => {
 
               <div className="strengths-section">
                 <h2>私の強み</h2>
-                <div className="strength">
+                <div className=" strength">
                   <h3>柔軟性がある</h3>
                   <p>
                     自分の考えに固執せず他者の意見で良いと思ったものは積極的に取り入れるようにしています。まずは試してみて、より効率良く作業が出来るようにする事を心掛けています。この強みはウェブ制作でも生かされており、より効率的に作業が出来るツール等を積極的に取り入れています。

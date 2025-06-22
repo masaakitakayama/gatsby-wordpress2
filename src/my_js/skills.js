@@ -17,17 +17,35 @@ const SkillsAnimation = () => {
         '.image-outer-7',
       ];
 
+      // ボックスのセレクタを配列で管理
+      const boxSelectors = [
+        '.box-1',
+        '.box-2',
+        '.box-3',
+        '.box-4',
+        '.box-5',
+        '.box-6',
+        '.box-7',
+      ];
 
       // スクロールイベントハンドラー
       function handleScroll(index) {
         const imageOuter = document.querySelector(selectors[index]);
-        if (imageOuter) {
+        const box = document.querySelector(boxSelectors[index]);
+
+        if (imageOuter && box) {
           const needle = imageOuter.querySelector('.needle');
           const persent = imageOuter.querySelector('.persent');
           const imageOuterTop = imageOuter.getBoundingClientRect().top;
           const windowHeight = window.innerHeight;
 
           if (imageOuterTop + 70 < windowHeight) {
+            // ボックスの枠線アニメーション
+            if (!box.classList.contains('box-animation')) {
+              box.classList.add('box-animation');
+            }
+
+            // 針とパーセンテージのアニメーション（既存のまま）
             if (needle) {
               needle.classList.add(`needle-${skillLevels[index]}`);
             }
@@ -36,7 +54,7 @@ const SkillsAnimation = () => {
             }
           }
         } else {
-          console.error(`要素 "${selectors[index]}" が見つかりません。`);
+          console.error(`要素 "${selectors[index]}" または "${boxSelectors[index]}" が見つかりません。`);
         }
       }
 

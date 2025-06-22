@@ -1,0 +1,143 @@
+.animated-svg-container {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.animated-svg-container.is-visible {
+  opacity: 1;
+}
+
+.animated-svg-container .group > *,
+.animated-svg-container .shape,
+.animated-svg-container .path {
+  opacity: 0;
+  transform-origin: center center;
+}
+
+.animated-svg-container.is-visible .shape,
+.animated-svg-container.is-visible .path,
+.animated-svg-container.is-visible text {
+  animation: fadeIn 0.8s forwards;
+}
+
+.animated-svg-container.is-visible .path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 1.5s forwards, fadeInPath 0.1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPath {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animated-svg-container.is-visible .rug { animation-delay: 0s; }
+.animated-svg-container.is-visible .desk .shape { animation-delay: 0.2s; }
+.animated-svg-container.is-visible .wall-art .shape { animation-delay: 0.4s; }
+.animated-svg-container.is-visible .plant .pot { animation-delay: 0.6s; }
+.animated-svg-container.is-visible .plant .leaf { animation-delay: 0.8s; }
+.animated-svg-container.is-visible .computer .shape { animation-delay: 1.0s; }
+.animated-svg-container.is-visible .chair .shape { animation-delay: 1.2s; }
+.animated-svg-container.is-visible .chair .path { animation-delay: 1.3s; }
+.animated-svg-container.is-visible .person .shape { animation-delay: 1.4s; }
+.animated-svg-container.is-visible .tablet .shape { animation-delay: 1.6s; }
+.animated-svg-container.is-visible .tablet .path { animation-delay: 1.8s; }
+
+.animated-svg-container.is-visible .platform { animation-delay: 0s; }
+.animated-svg-container.is-visible .platform-dots { animation-delay: 0.2s; }
+
+.animated-svg-container.is-visible .person-sitting .shape { animation-delay: 0.4s; }
+.animated-svg-container.is-visible .person-standing .shape { animation-delay: 0.6s; }
+.animated-svg-container.is-visible .person-standing .arm { animation-delay: 0.8s; }
+
+.animated-svg-container.is-visible .icon * {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.animated-svg-container.is-visible .chart > * { animation-name: draw, fadeInPath; animation-delay: 1.0s; }
+.animated-svg-container.is-visible .pie-chart > * { animation-name: draw, fadeInPath; animation-delay: 1.2s; }
+.animated-svg-container.is-visible .database > * { animation-name: draw, fadeInPath; animation-delay: 1.4s; }
+.animated-svg-container.is-visible .ai-text > * { animation-name: fadeIn; animation-delay: 1.6s; }
+.animated-svg-container.is-visible .ai-head > * { animation-name: draw, fadeInPath; animation-delay: 1.8s; }
+.animated-svg-container.is-visible .cpu > * { animation-name: fadeIn; animation-delay: 2.0s; }
+.animated-svg-container.is-visible .gear > * { animation-name: fadeIn; animation-delay: 2.2s; }
+
+.animated-svg-container.is-visible .globe-sphere {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 1.5s forwards, fadeInPath 0.1s forwards;
+    animation-delay: 0s;
+}
+
+.animated-svg-container.is-visible .globe-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 1s forwards, fadeInPath 0.1s forwards;
+}
+
+.animated-svg-container.is-visible .globe-lines .globe-line:nth-child(1) { animation-delay: 0.2s; }
+.animated-svg-container.is-visible .globe-lines .globe-line:nth-child(2) { animation-delay: 0.3s; }
+.animated-svg-container.is-visible .globe-lines .globe-line:nth-child(3) { animation-delay: 0.4s; }
+.animated-svg-container.is-visible .globe-lines .globe-line:nth-child(4) { animation-delay: 0.5s; }
+
+.animated-svg-container.is-visible .orbit {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: draw 2s forwards, fadeInPath 0.1s forwards;
+}
+
+.animated-svg-container.is-visible .orbits .orbit:nth-child(1) { animation-delay: 0.8s; }
+.animated-svg-container.is-visible .orbits .orbit:nth-child(2) { animation-delay: 0.9s; }
+.animated-svg-container.is-visible .orbits .orbit:nth-child(3) { animation-delay: 1.0s; }
+.animated-svg-container.is-visible .orbits .orbit:nth-child(4) { animation-delay: 1.1s; }
+.animated-svg-container.is-visible .orbits .orbit:nth-child(5) { animation-delay: 1.2s; }
+
+.animated-svg-container.is-visible .node {
+    animation: fadeIn 0.5s forwards;
+}
+
+.animated-svg-container.is-visible .nodes .node:nth-child(1) { animation-delay: 1.5s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(2) { animation-delay: 1.6s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(3) { animation-delay: 1.7s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(4) { animation-delay: 1.8s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(5) { animation-delay: 1.9s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(6) { animation-delay: 2.0s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(7) { animation-delay: 2.1s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(8) { animation-delay: 2.2s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(9) { animation-delay: 2.3s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(10) { animation-delay: 2.4s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(11) { animation-delay: 2.5s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(12) { animation-delay: 2.6s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(13) { animation-delay: 2.7s; }
+.animated-svg-container.is-visible .nodes .node:nth-child(14) { animation-delay: 2.8s; }
+
+/* Dark mode styles for better visibility */
+[data-theme="dark"] .animated-svg-container .globe-sphere {
+  stroke: #ffffff !important;
+}
+
+[data-theme="dark"] .animated-svg-container .globe-line {
+  stroke: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .animated-svg-container .orbit {
+  stroke: #b0d4f1 !important;
+}
+
+[data-theme="dark"] .animated-svg-container .node {
+  fill: #ffffff !important;
+}

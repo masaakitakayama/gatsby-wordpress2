@@ -19,31 +19,11 @@
 }
 
 .header__body-logo-outer {
-  width: 50%;
+  width: 150px;
   margin: 0;
   position: relative;
   top: -0.25rem;
 }
-
-@media (min-width:568px) {
- .header__body-logo-outer {
-  width: 40%;
-  margin: 0;
-  position: relative;
-  top: -0.25rem;
-}
-
-}
-@media (min-width:992px) {
- .header__body-logo-outer {
-  width: 30%;
-  margin: 0;
-  position: relative;
-  top: -0.25rem;
-}
-}
-
-
 
 .header__body-logo-item {
   width: fit-content;
@@ -110,29 +90,16 @@
 }
 
 /* ヘッダーロゴ */
-.header__body-logo-link {
-  display: block;
-  text-decoration: none;
-  width: fit-content;
-}
-
 .header__body-logo-item {
-  width: 140%;
+  width: 100%;
   height: auto;
   margin-bottom: 0;
 }
 
 /* レスポンシブ対応 */
-
 @media (min-width: 768px) {
   .header__body-logo-link {
-    width: 180px;
-  }
-}
-
-@media (min-width: 992px) {
-  .header__body-logo-link {
-    width: 200px;
+    width: 150px;
   }
 }
 
@@ -251,7 +218,7 @@
 }
 
 .modal_logo_outer {
-  width: 40%;
+  width: 150px;
   margin-bottom: 0;
 }
 
@@ -398,5 +365,15 @@
 
   .modal_logo_item {
     filter: brightness(1.2) drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+  }
+
+  .modal_logo_item .main-text {
+    fill: #ffffff !important;
+    filter: brightness(1.4);
+  }
+
+  .modal_logo_item .subtext {
+    fill: #ffffff !important;
+    filter: brightness(1.5);
   }
 }
