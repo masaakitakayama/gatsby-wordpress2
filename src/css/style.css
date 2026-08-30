@@ -546,24 +546,8 @@ section:first-child{
   height: 200%;
   transform-origin: 50% 48%;
   border-radius: 43%;
-  animation: drift linear infinite;
   pointer-events: none;
   mix-blend-mode: multiply;
-}
-
-.wave1 {
-  background: rgba(107, 183, 209, 0.25);
-  animation-duration: 24s;
-}
-
-.wave2 {
-  background: rgba(20, 102, 199, 0.2);
-  animation-duration: 18s;
-}
-
-.wave3 {
-  background: rgba(0, 149, 255, 0.15);
-  animation-duration: 12s;
 }
 
 .firstview-logo-outer {
