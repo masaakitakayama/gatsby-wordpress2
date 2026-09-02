@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import Layout from '../components/layout';
 import { Link } from 'gatsby';
 import '../styles/about-detaill.css';
+import ccna from '../static/ccna.png';
+import saa from '../static/aws-saa.png';
+import clf from '../static/aws-clf.png';
+import ccna from '../static/needle.png';
+import vba from '../static/vba-standard-image.png.png';
 
 const AboutDetaill = () => {
   useEffect(() => {
@@ -36,6 +41,44 @@ const AboutDetaill = () => {
                 <p>
                   高校卒業後、公務員試験対策の専門学校に通い、その後約7年間学校用務員として勤務。体調を崩し退職し、就労移行支援にてWEB制作や動画制作を学ぶ。現在は障害者雇用にて社内のWEB関連の業務サポートに従事している。
                 </p>
+              </div>
+
+              <div className="hobbies-section">
+                <h2>趣味・特技</h2>
+                <p>
+                  趣味は、ゲーム、駅伝観戦、ランニングです。ランニングはフルマラソンも完走した経験があります。大学駅伝も好きで、有名大学の選手の持ちタイムや成績を把握しています。また、ゲームは特にドラクエが好きで、新作を買うと徹夜してプレイすることもあります。
+                </p>
+                <p>
+                  特技は三段跳です。高校時代に3年間取り組んでおり、日々の鍛錬と分析を重ねた結果、1cmでも記録が伸びた時はとても感動しました。
+                </p>
+              </div>
+
+              <div className="Certification-section">
+                <h2>資格</h2>
+                <div className="Certification-item">
+                  <h3 className="Certification-name">CCNA</h3>
+                  <img className="Certification-image" src={ccna} alt="" />
+                  <p className="Certification-time">2026/8/21</p>
+                  <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/00252e07-2a87-45d2-bf03-16b556297f0e">資格証明サイトURL</Link>
+                </div>
+                <div className="Certification-item">
+                  <h3 className="Certification-name">AWS SAA</h3>
+                  <img className="Certification-image" src={saa} alt="" />
+                  <p className="Certification-time">2026/4/20</p>
+                  <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/b46c8eb5-c981-45e3-9a96-a3f9e298012c">資格証明サイトURL</Link>
+                </div>
+                <div className="Certification-item">
+                  <h3 className="Certification-name">AWS CLF</h3>
+                  <img className="Certification-image" src={clf} alt="" />
+                  <p className="Certification-time">2026/3/1</p>
+                  <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/d137fee8-09cc-47d1-bd87-41d1d8eb04ae">資格証明サイトURL</Link>
+                </div>
+                <div className="Certification-item">
+                  <h3 className="Certification-name">Excel VBA Standard</h3>
+                  <img className="Certification-image" src={vba} alt="" />
+                  <p className="Certification-time">2024/09/15</p>
+                  <Link className="Certification-link" to="https://www.openbadge-global.com/api/v1.0/openBadge/v2/Wallet/Public/GetAssertionShare/S25nNTQ0eE1HWmphNlVEQTExQi9hQT09">資格証明サイトURL</Link>
+                </div>
               </div>
 
               <div className="hobbies-section">
