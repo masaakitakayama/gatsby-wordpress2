@@ -5,7 +5,6 @@ import '../styles/about-detaill.css';
 import ccna from '../static/ccna.png';
 import saa from '../static/aws-saa.png';
 import clf from '../static/aws-clf.png';
-import ccna from '../static/needle.png';
 import vba from '../static/vba-standard-image.png.png';
 
 const AboutDetaill = () => {
