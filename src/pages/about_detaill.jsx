@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Layout from '../components/layout';
 import { Link } from 'gatsby';
-import '../styles/about-detaill.css';
+import '../css/about-detaill.css';
 import ccna from '../static/ccna.png';
 import saa from '../static/aws-saa.png';
 import clf from '../static/aws-clf.png';

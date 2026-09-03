@@ -1,0 +1,313 @@
+[data-theme="dark"] {
+.profile-info{
+  background-color: rgba(255, 255, 255, 0.1);
+
+  dt{
+    color: white;
+  }
+
+}
+
+.career-goal{
+  color: black;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.strength{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+}
+
+.about-detaill {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 6rem auto 0;
+}
+
+.about-detaill .container {
+  padding: 0 1rem;
+}
+
+.about-detaill .container p{
+  max-width: none;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.profile-section {
+  margin-bottom: 3rem;
+}
+
+.profile-grid {
+  margin-bottom: 2rem;
+}
+
+.profile-info {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1466C7;
+}
+
+.profile-info dl {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+}
+
+.profile-info dt {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.profile-info dd {
+  margin: 0;
+}
+
+.career-section,
+.hobbies-section,
+.career-plan-section,
+.strengths-section {
+  margin-bottom: 3rem;
+}
+
+.career-section h2,
+.hobbies-section h2,
+.career-plan-section h2,
+.strengths-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1466C7;
+  border-bottom: 2px solid #1466C7;
+  padding-bottom: 0.5rem;
+}
+
+.career-goals {
+  margin:2rem 0;
+}
+
+.career-goal {
+  background: white;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.career-goal:first-child{
+  margin-bottom: 1rem;
+}
+
+.career-goal:last-child{
+  margin: 1rem auto 0;
+}
+
+@media (min-width:576px) {
+  .career-goal:nth-child(2){
+    margin-left: 15px;
+  }
+}
+
+@media (min-width:992px) {
+  .career-goal{
+    margin-right:30px;
+  }
+
+  .career-goal:nth-child(2){
+    margin-left: 0;
+  }
+
+  .career-goal:last-child{
+  margin: 0;
+}
+}
+
+.career-goal h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.strength {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.strength h3 {
+  color: #1466C7;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.strength p {
+  line-height: 1.6;
+  color: #444;
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.button--primary {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #1466C7, #0A4C8B);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .profile-info dl {
+    grid-template-columns: 1fr;
+  }
+
+  .career-goals {
+    grid-template-columns: 1fr;
+  }
+
+  .about-detaill {
+    padding: 1rem 0;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+}
+
+/* 資格セクション全体 */
+.Certification-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.Certification-section h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* カードを配置するグリッドレイアウト（モバイルファースト：デフォルトは1列） */
+.Certification-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* itemsのコンテナをグリッド化 */
+.Certification-item {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Certification-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 各要素のスタイル */
+.Certification-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: #1a1a1a;
+}
+
+.Certification-image {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.Certification-time {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.Certification-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #0066cc;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  margin-top: auto; /* カード最下部に配置を固定 */
+}
+
+.Certification-link:hover {
+  background-color: #004999;
+}
+
+/* ---------------------------------------------
+   レスポンシブ対応 (メディアクエリ)
+--------------------------------------------- */
+
+/* タブレットサイズ (600px以上) : 2列並び */
+@media (min-width: 600px) {
+  /* itemsを並べるためのコンテナスタイル調整 */
+  .Certification-inner {
+    display: block; /* Grid制御へ */
+  }
+
+  /* h2以外のitem要素を囲むグリッド（CSS Grid） */
+  .Certification-inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .Certification-inner h2 {
+    grid-column: 1 / -1; /* タイトルは全幅 */
+  }
+
+  .Certification-item {
+    margin-bottom: 0; /* Gridのgapで余白調整するためリセット */
+  }
+}
+
+/* デスクトップサイズ (1024px以上) : 4列並び */
+@media (min-width: 1024px) {
+  .Certification-inner {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
