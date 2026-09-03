@@ -184,12 +184,6 @@
   box-sizing: border-box;
 }
 
-.Certification-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 30px;
-}
-
 .Certification-inner {
   display: flex;
   flex-direction: column;
