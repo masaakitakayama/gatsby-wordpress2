@@ -283,7 +283,7 @@ const IndexPage = ({ data }) => {
               <div className="col-8 col-md-6 col-lg-8 align-self-center">
                 <span className="name">M.T</span>
                 <p className="text">
-                  1995年生まれ 現在は障害者雇用にて社内のWEBサポート業務に従事。
+                  1995年生まれ 前職は社内のWEBサポート業務に従事。
                 </p>
               </div>
               </div>
