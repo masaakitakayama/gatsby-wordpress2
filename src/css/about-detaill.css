@@ -50,6 +50,7 @@
 .profile-section,
 .career-section,
 .hobbies-section,
+.Certification-section,
 .career-plan-section,
 .strengths-section {
   margin-bottom: 3rem;
@@ -58,6 +59,7 @@
 .career-section h2,
 .hobbies-section h2,
 .career-plan-section h2,
+.Certification-section h2,
 .strengths-section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;

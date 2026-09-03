@@ -91,7 +91,7 @@ const AboutDetaill = () => {
               </div>
 
               <div className="career-plan-section">
-                <h2 className="text-center mb-4">キャリアプラン</h2>
+              <h2>キャリアプラン</h2>
   
               <div className="row g-4 career-goals">
                 <div className="col-12 col-md-4">
