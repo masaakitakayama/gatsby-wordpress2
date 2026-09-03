@@ -53,30 +53,32 @@ const AboutDetaill = () => {
               </div>
 
               <div className="Certification-section">
-                <h2>資格</h2>
-                <div className="Certification-item">
-                  <h3 className="Certification-name">CCNA</h3>
-                  <img className="Certification-image" src={ccna} alt="" />
-                  <p className="Certification-time">2026/8/21</p>
-                  <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/00252e07-2a87-45d2-bf03-16b556297f0e">資格証明サイトURL</Link>
-                </div>
-                <div className="Certification-item">
-                  <h3 className="Certification-name">AWS SAA</h3>
-                  <img className="Certification-image" src={saa} alt="" />
-                  <p className="Certification-time">2026/4/20</p>
-                  <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/b46c8eb5-c981-45e3-9a96-a3f9e298012c">資格証明サイトURL</Link>
-                </div>
-                <div className="Certification-item">
-                  <h3 className="Certification-name">AWS CLF</h3>
-                  <img className="Certification-image" src={clf} alt="" />
-                  <p className="Certification-time">2026/3/1</p>
-                  <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/d137fee8-09cc-47d1-bd87-41d1d8eb04ae">資格証明サイトURL</Link>
-                </div>
-                <div className="Certification-item">
-                  <h3 className="Certification-name">Excel VBA Standard</h3>
-                  <img className="Certification-image" src={vba} alt="" />
-                  <p className="Certification-time">2024/09/15</p>
-                  <Link className="Certification-link" to="https://www.openbadge-global.com/api/v1.0/openBadge/v2/Wallet/Public/GetAssertionShare/S25nNTQ0eE1HWmphNlVEQTExQi9hQT09">資格証明サイトURL</Link>
+                <div className="Certification-inner">
+                  <h2>資格</h2>
+                  <div className="Certification-item">
+                    <h3 className="Certification-name">CCNA</h3>
+                    <img className="Certification-image" src={ccna} alt="" />
+                    <p className="Certification-time">2026/8/21</p>
+                    <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/00252e07-2a87-45d2-bf03-16b556297f0e">資格証明サイトURL</Link>
+                  </div>
+                  <div className="Certification-item">
+                    <h3 className="Certification-name">AWS SAA</h3>
+                    <img className="Certification-image" src={saa} alt="" />
+                    <p className="Certification-time">2026/4/20</p>
+                    <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/b46c8eb5-c981-45e3-9a96-a3f9e298012c">資格証明サイトURL</Link>
+                  </div>
+                  <div className="Certification-item">
+                    <h3 className="Certification-name">AWS CLF</h3>
+                    <img className="Certification-image" src={clf} alt="" />
+                    <p className="Certification-time">2026/3/1</p>
+                    <Link className="Certification-link" to="https://www.credly.com/earner/earned/badge/d137fee8-09cc-47d1-bd87-41d1d8eb04ae">資格証明サイトURL</Link>
+                  </div>
+                  <div className="Certification-item">
+                    <h3 className="Certification-name">Excel VBA Standard</h3>
+                    <img className="Certification-image" src={vba} alt="" />
+                    <p className="Certification-time">2024/09/15</p>
+                    <Link className="Certification-link" to="https://www.openbadge-global.com/api/v1.0/openBadge/v2/Wallet/Public/GetAssertionShare/S25nNTQ0eE1HWmphNlVEQTExQi9hQT09">資格証明サイトURL</Link>
+                  </div>
                 </div>
               </div>
 
