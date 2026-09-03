@@ -142,6 +142,39 @@
   margin: 0;
 }
 
+/* 枠線・背景・高さ揃えなどのカード装飾だけを担当 */
+.career-goal-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  height: 100%; /* 隣のカードと高さを揃える */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.career-goal-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.career-goal-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.career-plan-summary {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
 .strength {
   background: #fff;
   padding: 1.5rem;
