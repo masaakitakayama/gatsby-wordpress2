@@ -51,8 +51,8 @@ const AboutDetaill = () => {
               </div>
 
               <div className="Certification-section">
+                <h2>資格</h2>
                 <div className="Certification-inner">
-                  <h2>資格</h2>
                   <div className="Certification-item">
                     <h3 className="Certification-name">CCNA</h3>
                     <img className="Certification-image" src={ccna} alt="" />
