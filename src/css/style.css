@@ -563,23 +563,6 @@ section:first-child{
   }
 }
 
-/* @media (min-width:768px) {
-  .firstview-logo-outer {
-    svg{
-      width: 300px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: block;
-      margin: 0 auto;
-      height: auto;
-      z-index: 10;
-    }
-  }
-
-} */
-
 .works-title {
   color:#333;
   width: -moz-fit-content;
@@ -693,7 +676,6 @@ section:first-child{
     width: 100%;
   }
 }
-
 
 .about .name {
   width: -moz-fit-content;

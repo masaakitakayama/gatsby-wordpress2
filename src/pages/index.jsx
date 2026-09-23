@@ -28,22 +28,22 @@ const IndexPage = ({ data }) => {
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    // Firstviewアニメーション
-    if (firstviewRef.current) {
-      const waves = firstviewRef.current.querySelectorAll('.firstview__wave');
+    // // Firstviewアニメーション
+    // if (firstviewRef.current) {
+    //   const waves = firstviewRef.current.querySelectorAll('.firstview__wave');
 
-      // 継続的な波のアニメーションのみ維持
-      gsap.to(waves, {
-        rotation: "+=360",
-        duration: waves.length * 8,
-        repeat: -1,
-        ease: "none",
-        stagger: {
-          each: 8,
-          repeat: -1
-        }
-      });
-    }
+    //   // 継続的な波のアニメーションのみ維持
+    //   gsap.to(waves, {
+    //     rotation: "+=360",
+    //     duration: waves.length * 8,
+    //     repeat: -1,
+    //     ease: "none",
+    //     stagger: {
+    //       each: 8,
+    //       repeat: -1
+    //     }
+    //   });
+    // }
   }, []);
 
   // カテゴリータイトルのアニメーション用のuseEffect
@@ -252,11 +252,11 @@ const IndexPage = ({ data }) => {
     <Layout location={location}>
       <section>
         <div className="firstview" ref={firstviewRef}>
-          <div className="firstview__animation">
+          {/* <div className="firstview__animation">
             <div className="firstview__wave wave1"></div>
             <div className="firstview__wave wave2"></div>
             <div className="firstview__wave wave3"></div>
-          </div>
+          </div> */}
           <div className="firstview-logo-outer">
             <Logo2 className="firstview-logo" />
           </div>
