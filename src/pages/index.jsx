@@ -27,23 +27,6 @@ const IndexPage = ({ data }) => {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
     }
-
-    // // Firstviewアニメーション
-    // if (firstviewRef.current) {
-    //   const waves = firstviewRef.current.querySelectorAll('.firstview__wave');
-
-    //   // 継続的な波のアニメーションのみ維持
-    //   gsap.to(waves, {
-    //     rotation: "+=360",
-    //     duration: waves.length * 8,
-    //     repeat: -1,
-    //     ease: "none",
-    //     stagger: {
-    //       each: 8,
-    //       repeat: -1
-    //     }
-    //   });
-    // }
   }, []);
 
   // カテゴリータイトルのアニメーション用のuseEffect
@@ -128,7 +111,7 @@ const IndexPage = ({ data }) => {
         });
       });
 
-      // About title animation
+      // About titleのアニメーション時間
       if (aboutTitleRef.current) {
         gsap.set(aboutTitleRef.current, {
           opacity: 0,
@@ -151,7 +134,7 @@ const IndexPage = ({ data }) => {
         });
       }
 
-      // Skills title animation
+      // Skills titleのアニメーションの時間
       if (skillsTitleRef.current) {
         gsap.set(skillsTitleRef.current, {
           opacity: 0,
@@ -201,14 +184,6 @@ const IndexPage = ({ data }) => {
           animatedTarget = split.chars;
         }
 
-        // 初期状態で非表示にするなど、アニメーション前の状態を設定
-        // animationProps に opacity: 0 が含まれているため、これは不要かもしれません
-        // 必要に応じて、gsap.set(animatedTarget, { opacity: 0 }); などを追加
-        // ただし、animationPropsにy:30, opacity:0が含まれているので、
-        // fromアニメーションは自動的に初期状態を処理します。
-        // もし要素が最初から見えてしまっているなら、CSSで初期状態を非表示にするか、
-        // より早い段階でgsap.setで初期状態を設定する必要があります。
-
         animation = gsap.from(animatedTarget, {
           ...animationProps,
           scrollTrigger: {
@@ -230,9 +205,7 @@ const IndexPage = ({ data }) => {
     return null;
   };
 
-  // ★ 2. categories の定義は、データが利用可能になってから行う
-  // この if 文は Hooks の呼び出し順序に影響しないように、
-  // Hooks の定義の後に配置する
+  // ★ 2. categories の定義は、データが利用可能になってから行う　// この if 文は Hooks の呼び出し順序に影響しないように、　// Hooks の定義の後に配置する
   if (!wpgraphql?.categories?.edges) {
     console.warn("カテゴリーデータがまだ読み込まれていません:", wpgraphql);
     return <p>カテゴリーデータを読み込み中...</p>;
@@ -242,21 +215,10 @@ const IndexPage = ({ data }) => {
     .map(({ node }) => node)
     .filter(category => category.slug !== 'uncategorized');
 
-  // コンソールで categoryTitleRefs を確認する場合は、
-  // 開発時のみ:
-  // useEffect(() => {
-  //   console.log("Current categoryTitleRefs (after data loaded):", categoryTitleRefs.current);
-  // }, [categories]); // categories の更新時や初回レンダリング後に確認
-
   return (
     <Layout location={location}>
       <section>
         <div className="firstview" ref={firstviewRef}>
-          {/* <div className="firstview__animation">
-            <div className="firstview__wave wave1"></div>
-            <div className="firstview__wave wave2"></div>
-            <div className="firstview__wave wave3"></div>
-          </div> */}
           <div className="firstview-logo-outer">
             <Logo2 className="firstview-logo" />
           </div>

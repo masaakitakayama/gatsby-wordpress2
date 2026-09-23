@@ -540,16 +540,6 @@ section:first-child{
   height: 100%;
 }
 
-.firstview__wave {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  transform-origin: 50% 48%;
-  border-radius: 43%;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-}
-
 .firstview-logo-outer {
   svg{
   position: absolute;
@@ -607,21 +597,6 @@ section:first-child{
 /* ダークモード対応 */
 [data-theme="dark"] .firstview {
   background-color: #1a1a2e;
-}
-
-[data-theme="dark"] .wave1 {
-  background: rgba(107, 183, 209, 0.2);
-  mix-blend-mode: screen;
-}
-
-[data-theme="dark"] .wave2 {
-  background: rgba(20, 102, 199, 0.15);
-  mix-blend-mode: screen;
-}
-
-[data-theme="dark"] .wave3 {
-  background: rgba(0, 149, 255, 0.12);
-  mix-blend-mode: screen;
 }
 
 /* レスポンシブ対応 */
